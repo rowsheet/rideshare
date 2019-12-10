@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_main_screen" class="p-3">
+    <div class="back_nav my-3">
+        <a href="verification_phone">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h4>Contact [contact.name]</h4>
+    <small class="text-info mb-3">[contact.phone_number]</small>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fas fa-map-marker-alt"></i>
+            </span>
+        </div>
+        <input type="text" placeholder="Share trip status" class="form-control"></input>
+    </div>
+    <h4>Send a text</h4>
+    <textarea class="form-control" rows="5"></textarea>
+    <div class="row p-3">
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+            <a class="float-right">
+                Done
+            </a>
+        </div>
+    </div>
+    <h4>Send a free ride</h4>
+    <button class="btn btn-outline-primary w-100 text-left mb-1">
+        Donate towards [contact.name]'s next ride.
+    </button>
+</div>
+{% endblock %}
