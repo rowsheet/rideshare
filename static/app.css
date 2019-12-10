@@ -60,6 +60,16 @@ i.fas {
     text-align: center;
 }
 
+.map_view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.map_view .map {
+    flex-grow: 1;
+}
+
 /*--------------------------------------
  * PAGES
 --------------------------------------*/
@@ -89,4 +99,22 @@ i.fas {
 #profile_picture {
     height: 100px;
     width: 100px;
+    display: block;
+}
+
+#car_thumbnail {
+    height: 100px;
+    width: 100px;
+}
+
+/* Ride En-Route */
+
+#page_ride_en_route .nav-item.active {
+    display: none;
+}
+
+#page_ride_en_route nav {
+    display: inline-block;
+    float: left;
+    width: 0px;
 }

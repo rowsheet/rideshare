@@ -33,6 +33,7 @@ dev_menu = {
     "confirm_request": "confirm_request",
     "ride_verification": "ride_verification",
     "searching_rides": "searching_rides",
+    "ride_en_route": "ride_en_route",
 }
 
 def basic_context(request):
@@ -169,6 +170,11 @@ def ride_verification():
 def searching_rides():
     context = basic_context(request)
     return render_template("pages/searching_rides.html", **context)
+
+@app.route('/ride_en_route')
+def ride_en_route():
+    context = basic_context(request)
+    return render_template("pages/ride_en_route.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
