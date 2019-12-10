@@ -7,7 +7,13 @@
         <br>
         This space is visible regardless of the screen size.
     </p>
-    <!-- overfow test -->
+    <!-- api test -->
+    <div class="alert alert-primary">
+        <h5>api_test():</h5>
+        <span class="badge badge-primary">{{ api_test.status_code }}</span>
+        <code>{{ api_test.text }}</code>
+    </div>
+    <!-- overflow test -->
     {% for i in range(25) %}
         <h3>
             {{ i }}. Mobile Overflow
@@ -22,7 +28,13 @@
         <br>
         This content willy only appear if the screen view greater than 500px.
     </p>
-    <!-- overfow test -->
+    <!-- api test -->
+    <div class="alert alert-primary">
+        <h5>api_test():</h5>
+        <span class="badge badge-primary">{{ api_test.status_code }}</span>
+        <code>{{ api_test.text }}</code>
+    </div>
+    <!-- overflow test -->
     {% for i in range(25) %}
         <h3>{{ i }}. Desktop Overfow</h3>
     {% endfor %}

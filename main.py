@@ -24,10 +24,12 @@ def auth_callback():
 def index():
     session_id = request.cookies.get("session_id")
     session = api.session(session_id)
+    api_test = api.api_test(session_id, {"value": "DOO"})
     return render_template("pages/test.html",
-            session=session,
-            settings=settings,
-            )
+        session=session,
+        settings=settings,
+        api_test=api_test,
+    )
 
 @app.route('/<path:path>', methods=['GET', 'POST'])
 def catchall(path):
