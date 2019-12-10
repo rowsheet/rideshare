@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_set_location" class="p-3">
+    <div class="back_nav my-3">
+        <a href="verification_phone">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h3>Where can we take you?</h3>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                Start
+            </span>
+        </div>
+        <input type="text" placeholder="Current Location" class="form-control"></input>
+        <div class="input-group-append">
+            <span class="input-group-text">
+                <i class="material-icons">person_pin</i>
+            </span>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                End
+            </span>
+        </div>
+        <input type="text" placeholder="Search Destination" class="form-control"></input>
+        <div class="input-group-append">
+            <span class="input-group-text">
+                <i class="material-icons">add</i>
+            </span>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-md-6">
+            <h6>
+                <i class="material-icons">map</i>
+                Set on map
+            </h6>
+            <h6>
+                <i class="material-icons">home</i>
+                Home
+            </h6>
+            <h6>
+                <i class="material-icons">work</i>
+                Work
+            </h6>
+        </div>
+        <div class="col-md-6">
+            <a class="float-right">
+                Done
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
