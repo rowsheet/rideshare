@@ -20,6 +20,7 @@ dev_menu = {
     "payment_methods": "payment_methods",
     "update_paypal": "update_paypal",
     "update_credit_card": "update_credit_card",
+    "profile": "profile",
 }
 
 def basic_context(request):
@@ -91,6 +92,11 @@ def update_paypal():
 def update_credit_card():
     context = basic_context(request)
     return render_template("pages/update_credit_card.html", **context)
+
+@app.route('/profile')
+def profile():
+    context = basic_context(request)
+    return render_template("pages/profile.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
