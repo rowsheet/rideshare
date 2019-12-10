@@ -18,6 +18,8 @@ dev_menu = {
     "verification_code": "verification_code",
     "verification_phone": "verification_phone",
     "payment_methods": "payment_methods",
+    "update_paypal": "update_paypal",
+    "update_credit_card": "update_credit_card",
 }
 
 def basic_context(request):
@@ -79,6 +81,16 @@ def account_created():
 def payment_methods():
     context = basic_context(request)
     return render_template("pages/payment_methods.html", **context)
+
+@app.route('/update_paypal')
+def update_paypal():
+    context = basic_context(request)
+    return render_template("pages/update_paypal.html", **context)
+
+@app.route('/update_credit_card')
+def update_credit_card():
+    context = basic_context(request)
+    return render_template("pages/update_credit_card.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
