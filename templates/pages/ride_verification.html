@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_set_location" class="p-3">
+    <div class="back_nav my-3">
+        <a href="verification_phone">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h3>
+        Ride Verification
+    </h3>
+    <br>
+    <p>
+        Choose your verification color
+    </p>
+    {% for row in [
+        {
+            "red": "#f44336",
+            "pink": "#e91e63",
+            "purple": "#9c27b0",
+            "blue": "#007bfe",
+        },
+        {
+            "cyan": "#00bcd4",
+            "green": "#4caf50",
+            "yellow": "#ffeb3b",
+            "orange": "#ff9800",
+        },
+    ] %}
+    <div class="row mb-3">
+        <div class="col-2">
+        </div>
+        {% for name, hex in row.items() %}
+        <div class="col-2 px-1">
+            <button class="btn btn-primary w-100"
+                style="background: {{ hex }}; border: none;">
+                {{ name }} 
+            </button>
+        </div>
+        {% endfor %}
+        <div class="col-2">
+        </div>
+    </div>
+    {% endfor %}
+    <p>
+        Choose your verification number
+    </p>
+    {% for row in [[1,2,3,4],[5,6,7,8],[9,10,11,12]] %}
+    <div class="row mb-3">
+        <div class="col-2">
+        </div>
+        {% for column in row %}
+        <div class="col-2 px-1">
+            <button class="btn btn-primary w-100">
+                {{ column }} 
+            </button>
+        </div>
+        {% endfor %}
+        <div class="col-2">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
