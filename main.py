@@ -70,6 +70,15 @@ def account():
         settings=settings,
     )
 
+@app.route('/create_account')
+def create_account():
+    session_id = request.cookies.get("session_id")
+    session = api.session(session_id)
+    return render_template("pages/create_account.html",
+        session=session,
+        settings=settings,
+    )
+
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
     auth_nonce = str(request.args.get('auth_nonce'))
