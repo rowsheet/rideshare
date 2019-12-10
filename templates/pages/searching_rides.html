@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_main_screen">
+    <div class="map bg-primary">
+        <button class="btn-light btn-round m-3">
+            <a>
+                <i class="material-icons">menu</i>
+            </a>
+        </button>
+    </div>
+    <div id="main_form" class="p-3 text-center">
+        <p>Your ride is confirmed</p>
+        <hr>
+        <h4>We're finding the nearest driver</h4>
+        <h1>
+            <i class="fas fa-car"></i>
+        </h1>
+        <hr>
+        <button class="btn btn-primary">
+            Edit ride
+        </button>
+    </div>
+</div>
+{% endblock %}
