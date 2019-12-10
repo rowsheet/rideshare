@@ -24,6 +24,7 @@ dev_menu = {
     "add_trusted_contacts": "add_trusted_contacts",
     "message_contact": "message_contact",
     "help_the_community": "help_the_community",
+    "confirm_donation": "confirm_donation",
 }
 
 def basic_context(request):
@@ -115,6 +116,11 @@ def message_contact():
 def help_the_community():
     context = basic_context(request)
     return render_template("pages/help_the_community.html", **context)
+
+@app.route('/confirm_donation')
+def confirm_donation():
+    context = basic_context(request)
+    return render_template("pages/confirm_donation.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():

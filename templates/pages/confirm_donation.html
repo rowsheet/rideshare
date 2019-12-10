@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_create_account">
+    <div class="back_nav p-3 bg-primary mobile-heading">
+        <a href="verification_phone">
+            <i class="material-icons text-light">arrow_back_ios</i>
+        </a>
+    </div>
+    <div class="p-3">
+        <h4 class="mb-3">
+            Continue with your one-time donation
+        </h4>
+        <div class="row px-2 mb-2">
+            <div class="col-3 px-1">
+                <button class="btn btn-primary w-100">
+                    $5
+                </button>
+            </div>
+            <div class="col-9 px-1">
+            </div>
+        </div>
+        <br>
+        <h4 class="mb-3">
+            Paying with
+        </h4>
+        <p class="mb-1">PayPal</p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fab fa-paypal"></i>
+                </span>
+            </div>
+            <input type="text" placeholder="[youname@email.com]" class="form-control"></input>
+        </div>
+        <p class="mb-1">Credit Card</p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="material-icons">credit_card</i>
+                </span>
+            </div>
+            <input type="text" placeholder="XXXX-XXXX-XXXX-1234" class="form-control"></input>
+        </div>
+        <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="col-6">
+                <a class="float-right">
+                    Done
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
