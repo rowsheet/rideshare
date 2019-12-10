@@ -21,12 +21,19 @@
         </div>
         <div id="content">
             <div id="mobile_content">
-                {% block mobile_content %}
-                {% endblock %}
+                <div class="container-fluid">
+                    {% block mobile_content %}
+                    {% endblock %}
+                </div>
             </div>
             <div id="desktop_content">
-                {% block desktop_content %}
-                {% endblock %}
+                <div class="container-fluid">
+                    {% include "partials/desktop_header.html" %}
+                    <div class="p-3">
+                        {% block desktop_content %}
+                        {% endblock %}
+                    </div>
+                </div>
             </div>
         </div>
     </body>

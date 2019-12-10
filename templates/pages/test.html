@@ -1,13 +1,29 @@
 {% extends "index.html" %}
 
 {% block mobile_content %}
+    <h1>Mobile Content</h1>
+    <p class="lead">
+        This space will model exactly what's seen on mobile.
+        <br>
+        This space is visible regardless of the screen size.
+    </p>
+    <!-- overfow test -->
     {% for i in range(25) %}
-        <h1>{{ i }}. MOBILE</h1>
+        <h3>
+            {{ i }}. Mobile Overflow
+        </h3>
     {% endfor %}
 {% endblock %}
 
 {% block desktop_content %}
+    <h1>Desktop Content</h1>
+    <p class="lead">
+        Use this space for content you want to appear when viewing from desktop.
+        <br>
+        This content willy only appear if the screen view greater than 500px.
+    </p>
+    <!-- overfow test -->
     {% for i in range(25) %}
-        <h1>{{ i }}. DESKTOP</h1>
+        <h3>{{ i }}. Desktop Overfow</h3>
     {% endfor %}
 {% endblock %}

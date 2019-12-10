@@ -1,45 +1,33 @@
-import os
-import base64
 from flask import Flask, request, Response, make_response, redirect, render_template
 import requests
 
-app = Flask(__name__)
+import settings
+import api
 
-API_SERVER = os.getenv("API_SERVER")
+app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
+API_SERVER = settings.API_SERVER
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
-    nonce = str(request.args.get('auth_nonce'))
-    rs_resp = requests.request(
-        method="GET",
-        url=API_SERVER + "/auth?nonce=" + nonce,
-    )
-    session_id = rs_resp.json().get("session_id")
+    auth_nonce = str(request.args.get('auth_nonce'))
+    api_resp = api.get_session(auth_nonce)
     resp = make_response(redirect('/'))
-    if rs_resp.status_code == 200:
+    if api_resp.status_code == 200:
+        session_id = api_resp.json().get("session_id")
         resp.set_cookie("session_id", session_id);
-    return resp
+        return resp
+    return "Oops... Something went wrong."
 
 @app.route('/')
 def index():
     session_id = request.cookies.get("session_id")
-    authorization = "Bearer " + str(session_id)
-    api_resp = requests.request(
-        method="GET",
-        url=API_SERVER + "/session",
-        headers = {
-            "Authorization": authorization,
-        },
-    )
-    if api_resp.status_code == 200:
-        return "You're logged in. <a href='" + API_SERVER + "/accounts/logout/'>logout</a><pre>" + api_resp.text + "</pre>"
-    elif api_resp.status_code == 401:
-        return "You're logged out. <a href='" + API_SERVER + "/accounts/login/'>login</a><pre>" + api_resp.text + "</pre>"
-    return "Oopps. <pre>%s</pre>" % api_resp.text
-
-@app.route('/test')
-def test():
-    return render_template("pages/test.html")
+    session = api.session(session_id)
+    return render_template("pages/test.html",
+            session=session,
+            settings=settings,
+            )
 
 @app.route('/<path:path>', methods=['GET', 'POST'])
 def catchall(path):
