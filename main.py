@@ -7,86 +7,72 @@ import api
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-@app.route('/')
-def index():
+dev_menu = {
+    "account": "account",
+    "account_created": "account_created",
+    "create_account": "create_account",
+    "main_screen": "main_screen",
+    "set_location": "set_location",
+    "set_location_later": "set_location_later",
+    "splash_page": "/",
+    "verification_code": "verification_code",
+    "verification_phone": "verification_phone",
+}
+
+def basic_context(request):
     session_id = request.cookies.get("session_id")
     session = api.session(session_id)
-    return render_template("pages/splash_page.html",
-        session=session,
-        settings=settings,
-    )
+    context = {
+        "session": session,
+        "settings": settings,
+        "dev_menu": dev_menu,
+    }
+    return context
+
+@app.route('/')
+def index():
+    context = basic_context(request)
+    return render_template("pages/splash_page.html", **context)
 
 @app.route('/main_screen')
 def main_screen():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    return render_template("pages/main_screen.html",
-        session=session,
-        settings=settings,
-    )
+    context = basic_context(request)
+    return render_template("pages/main_screen.html", **context)
 
 @app.route('/verification_phone')
 def verification_phone():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    return render_template("pages/verification_phone.html",
-        session=session,
-        settings=settings,
-    )
+    context = basic_context(request)
+    return render_template("pages/verification_phone.html", **context)
 
 @app.route('/verification_code')
 def verification_code():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    return render_template("pages/verification_code.html",
-        session=session,
-        settings=settings,
-    )
+    context = basic_context(request)
+    return render_template("pages/verification_code.html", **context)
 
 @app.route('/set_location')
 def set_location():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    return render_template("pages/set_location.html",
-        session=session,
-        settings=settings,
-    )
+    context = basic_context(request)
+    return render_template("pages/set_location.html", **context)
 
 @app.route('/set_location_later')
 def set_location_later():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    return render_template("pages/set_location_later.html",
-        session=session,
-        settings=settings,
-    )
+    context = basic_context(request)
+    return render_template("pages/set_location_later.html", **context)
 
 @app.route('/account')
 def account():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    return render_template("pages/account.html",
-        session=session,
-        settings=settings,
-    )
+    context = basic_context(request)
+    return render_template("pages/account.html", **context)
 
 @app.route('/create_account')
 def create_account():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    return render_template("pages/create_account.html",
-        session=session,
-        settings=settings,
-    )
+    context = basic_context(request)
+    return render_template("pages/create_account.html", **context)
 
 @app.route('/account_created')
 def account_created():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    return render_template("pages/account_created.html",
-        session=session,
-        settings=settings,
-    )
+    context = basic_context(request)
+    return render_template("pages/account_created.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
