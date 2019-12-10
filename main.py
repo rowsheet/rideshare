@@ -7,7 +7,14 @@ import api
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-API_SERVER = settings.API_SERVER
+@app.route('/')
+def index():
+    session_id = request.cookies.get("session_id")
+    session = api.session(session_id)
+    return render_template("pages/splash_page.html",
+        session=session,
+        settings=settings,
+    )
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
@@ -19,17 +26,6 @@ def auth_callback():
         resp.set_cookie("session_id", session_id);
         return resp
     return "Oops... Something went wrong."
-
-@app.route('/')
-def index():
-    session_id = request.cookies.get("session_id")
-    session = api.session(session_id)
-    api_test = api.api_test(session_id, {"value": "DOO"})
-    return render_template("pages/test.html",
-        session=session,
-        settings=settings,
-        api_test=api_test,
-    )
 
 @app.route('/<path:path>', methods=['GET', 'POST'])
 def catchall(path):

@@ -1,3 +1,10 @@
+:root {
+    --theme-color: #8bcb8d;
+    --dark: #596981;
+    --light: #eeeeee;
+    --background: white;
+}
+
 #content {
     width: 100%;
     display: flex;
@@ -6,6 +13,9 @@
 
 #desktop_content{
     flex: auto;
+}
+#desktop_content .container-fluid {
+    min-height: calc(100vh - 57px);
 }
 
 #mobile_content {
@@ -19,7 +29,6 @@
 }
 
 @media screen and (max-width: 500px) {
-    * { color: blue; }
     #mobile_content {
         width: 100%;
         min-width: 100%;
@@ -28,4 +37,38 @@
         height: 100vh;
         overflow: hidden;
     }
+}
+
+/*--------------------------------------
+ * COMPONENTS
+--------------------------------------*/
+
+.round_button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: var(--theme-color);
+    border: none;
+    float: right;
+}
+
+i.material-icons {
+    vertical-align: middle;
+}
+
+.map {
+    background: var(--light);
+}
+
+/*--------------------------------------
+ * PAGES
+--------------------------------------*/
+
+/* Initial Screen */
+
+#page_inital_screen #logo {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    background: var(--theme-color);
 }
