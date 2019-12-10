@@ -23,6 +23,7 @@ dev_menu = {
     "profile": "profile",
     "add_trusted_contacts": "add_trusted_contacts",
     "message_contact": "message_contact",
+    "help_the_community": "help_the_community",
 }
 
 def basic_context(request):
@@ -109,6 +110,11 @@ def add_trusted_contacts():
 def message_contact():
     context = basic_context(request)
     return render_template("pages/message_contact.html", **context)
+
+@app.route('/help_the_community')
+def help_the_community():
+    context = basic_context(request)
+    return render_template("pages/help_the_community.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
