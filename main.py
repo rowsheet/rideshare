@@ -34,6 +34,15 @@ def verification_phone():
         settings=settings,
     )
 
+@app.route('/verification_code')
+def verification_code():
+    session_id = request.cookies.get("session_id")
+    session = api.session(session_id)
+    return render_template("pages/verification_code.html",
+        session=session,
+        settings=settings,
+    )
+
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
     auth_nonce = str(request.args.get('auth_nonce'))
