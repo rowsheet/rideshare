@@ -29,6 +29,7 @@ dev_menu = {
     "donation_success": "donation_success",
     "ride_details": "ride_details",
     "past_rides": "past_rides",
+    "add_tip": "add_tip",
 }
 
 def basic_context(request):
@@ -145,6 +146,11 @@ def ride_details():
 def past_rides():
     context = basic_context(request)
     return render_template("pages/past_rides.html", **context)
+
+@app.route('/add_tip')
+def add_tip():
+    context = basic_context(request)
+    return render_template("pages/add_tip.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():

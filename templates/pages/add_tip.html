@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_create_account">
+    <div class="back_nav my-3 p-3">
+        <a href="verification_phone">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h4 class="px-3 mb-3">
+        Add Tip 
+    </h4>
+    <div id="profile_picture" class="bg-primary m-auto">
+    </div>
+    <p class="text-center mt-3 mb-0">
+        <strong>
+            Add a tip for [driver.name]!
+        </strong>
+    </p>
+    <p class="text-center">
+        Your trip was [trip.price].
+    </p>
+    <div class="p-3">
+        <div class="row px-2 mb-2">
+            <div class="col-3 px-1">
+                <button class="btn btn-primary w-100">
+                    $1
+                </button>
+            </div>
+            <div class="col-3 px-1">
+                <button class="btn btn-primary w-100">
+                    $2
+                </button>
+            </div>
+            <div class="col-3 px-1">
+                <button class="btn btn-primary w-100">
+                    $5
+                </button>
+            </div>
+            <div class="col-3 px-1">
+                <button class="btn btn-primary w-100">
+                    $10
+                </button>
+            </div>
+        </div>
+        <div class="row px-2 mb-3">
+            <div class="col-12 px-1">
+                <button class="btn btn-primary w-100">
+                    Another amount 
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="col-6">
+                <a class="float-right">
+                    Submit
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
