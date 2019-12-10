@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+    {% for i in range(25) %}
+        <h1>{{ i }}. MOBILE</h1>
+    {% endfor %}
+{% endblock %}
+
+{% block desktop_content %}
+    {% for i in range(25) %}
+        <h1>{{ i }}. DESKTOP</h1>
+    {% endfor %}
+{% endblock %}

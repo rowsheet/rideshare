@@ -1,0 +1,32 @@
+#content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#desktop_content{
+    background: #eee;
+    flex: auto;
+}
+
+#mobile_content {
+    background: white;
+    height: 100vh;
+    width: 500px;
+    min-width: 500px;
+    position: sticky;
+    top: 0px;
+    overflow: scroll;
+}
+
+@media screen and (max-width: 500px) {
+    * { color: blue; }
+    #mobile_content {
+        width: 100%;
+        min-width: 100%;
+    }
+    #content {
+        height: 100vh;
+        overflow: hidden;
+    }
+}

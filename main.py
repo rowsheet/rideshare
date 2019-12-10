@@ -1,9 +1,9 @@
 import os
 import base64
-from flask import Flask, request, Response, make_response, redirect
+from flask import Flask, request, Response, make_response, redirect, render_template
 import requests
 
-app = Flask(__name__, static_url_path='/local_static')
+app = Flask(__name__)
 
 API_SERVER = os.getenv("API_SERVER")
 
@@ -36,6 +36,10 @@ def index():
     elif api_resp.status_code == 401:
         return "You're logged out. <a href='" + API_SERVER + "/accounts/login/'>login</a><pre>" + api_resp.text + "</pre>"
     return "Oopps. <pre>%s</pre>" % api_resp.text
+
+@app.route('/test')
+def test():
+    return render_template("pages/test.html")
 
 @app.route('/<path:path>', methods=['GET', 'POST'])
 def catchall(path):
