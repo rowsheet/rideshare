@@ -51,6 +51,15 @@ i.material-icons {
     height: 33vh;
 }
 
+.map_small {
+    height: 200px;
+}
+
+i.fas {
+    width: 25px;
+    text-align: center;
+}
+
 /*--------------------------------------
  * PAGES
 --------------------------------------*/

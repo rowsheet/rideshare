@@ -27,6 +27,7 @@ dev_menu = {
     "confirm_donation": "confirm_donation",
     "add_credit_card": "add_credit_card",
     "donation_success": "donation_success",
+    "ride_details": "ride_details",
 }
 
 def basic_context(request):
@@ -133,6 +134,11 @@ def add_credit_card():
 def donation_success():
     context = basic_context(request)
     return render_template("pages/donation_success.html", **context)
+
+@app.route('/ride_details')
+def ride_details():
+    context = basic_context(request)
+    return render_template("pages/ride_details.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
