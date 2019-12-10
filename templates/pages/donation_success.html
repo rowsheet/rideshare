@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_create_account" class="p-3">
+    <div class="back_nav my-3">
+        <a href="verification_phone">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h4 class="text-center mb-3">
+        Success! Your donation has been processed.
+    </h4>
+    <p class="text-center mb-3">
+        Thank you for your donation.
+    </p>
+    <br>
+    <p class="text-center mx-5 px-5">
+        Please enter your email below if you would like a tax-deductable receipt.
+    </p>
+    <input type="text" placeholder="Enter your email" class="form-control mb-3">
+    </input>
+    <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+            <a class="float-right">
+                Submit
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
