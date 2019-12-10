@@ -21,6 +21,7 @@ dev_menu = {
     "update_paypal": "update_paypal",
     "update_credit_card": "update_credit_card",
     "profile": "profile",
+    "add_trusted_contacts": "add_trusted_contacts",
 }
 
 def basic_context(request):
@@ -97,6 +98,11 @@ def update_credit_card():
 def profile():
     context = basic_context(request)
     return render_template("pages/profile.html", **context)
+
+@app.route('/add_trusted_contacts')
+def add_trusted_contacts():
+    context = basic_context(request)
+    return render_template("pages/add_trusted_contacts.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():

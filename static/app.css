@@ -47,6 +47,10 @@ i.material-icons {
     vertical-align: middle;
 }
 
+.mobile-heading {
+    height: 33vh;
+}
+
 /*--------------------------------------
  * PAGES
 --------------------------------------*/

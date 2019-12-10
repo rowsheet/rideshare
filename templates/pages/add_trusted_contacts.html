@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_create_account">
+    <div class="back_nav p-3 bg-primary mobile-heading">
+        <a href="verification_phone">
+            <i class="material-icons text-light">arrow_back_ios</i>
+        </a>
+    </div>
+    <div class="p-3">
+        <h4 class="mb-3">
+            Let loved ones follow your ride
+        </h4>
+        <ul class="mb-3" style="padding-left: 17px;">
+            <li class="mb-3">
+                Trusted Contacts ensures safety.
+            </li>
+            <li class="mb-3">
+                Share the status of your trip and your location with friends and family.
+            </li>
+            <li class="mb-3">
+                Pay it forward with the option to send a free trip to anyone of your choosing.
+            </li>
+            <li class="mb-3">
+                Send messages to Trusted Contacts to inform them that you've arrived safely.
+            </li>
+        </ul>
+        <br>
+        <button class="btn btn-outline-primary w-100 text-left mb-1">
+            <i class="fas fa-address-card mr-3"></i>
+            Add Trusted Contact
+            <i class="fas fa-plus-circle float-right m-1"></i>
+        </button>
+        <p>
+            <small class="text-">
+                Add up to 5 Trusted Contacts to your list
+            </small>
+        </p>
+        <br>
+        <h4 class="mb-3">
+            Your Trusted Contacts
+        </h4>
+        <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+</div>
+{% endblock %}
