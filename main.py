@@ -17,6 +17,7 @@ dev_menu = {
     "splash_page": "/",
     "verification_code": "verification_code",
     "verification_phone": "verification_phone",
+    "payment_methods": "payment_methods",
 }
 
 def basic_context(request):
@@ -73,6 +74,11 @@ def create_account():
 def account_created():
     context = basic_context(request)
     return render_template("pages/account_created.html", **context)
+
+@app.route('/payment_methods')
+def payment_methods():
+    context = basic_context(request)
+    return render_template("pages/payment_methods.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
