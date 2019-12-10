@@ -16,6 +16,15 @@ def index():
         settings=settings,
     )
 
+@app.route('/main_screen')
+def main_screen():
+    session_id = request.cookies.get("session_id")
+    session = api.session(session_id)
+    return render_template("pages/main_screen.html",
+        session=session,
+        settings=settings,
+    )
+
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
     auth_nonce = str(request.args.get('auth_nonce'))

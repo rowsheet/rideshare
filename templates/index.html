@@ -21,10 +21,8 @@
         </div>
         <div id="content">
             <div id="mobile_content">
-                <div class="container-fluid">
-                    {% block mobile_content %}
-                    {% endblock %}
-                </div>
+                {% block mobile_content %}
+                {% endblock %}
             </div>
             <div id="desktop_content">
                 {% include "partials/desktop_header.html" %}
