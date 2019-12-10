@@ -1,0 +1,72 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_main_screen">
+    <div class="map bg-primary">
+        <button class="btn-light btn-round m-3">
+            <a>
+                <i class="material-icons">menu</i>
+            </a>
+        </button>
+    </div>
+    <div id="main_form" class="p-3">
+        <h4>Confirm ride details</h4>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    Start
+                </span>
+            </div>
+            <input type="text" placeholder="Search destination from a ride ASAP" class="form-control"></input>
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    Edit
+                </span>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    End
+                </span>
+            </div>
+            <input type="text" placeholder="Schedule a future ride." class="form-control"></input>
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    Edit
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row px-3 mb-3">
+        <div class="col-6">
+            <small class="text-info">
+                Estimated fare [request.est_fare]
+            </small>
+        </div>
+        <div class="col-6 text-right">
+            <small class="text-info">
+                Estimated fare [request.eta]
+            </small>
+        </div>
+    </div>
+    <p class="text-center">
+        How would you like to pay?
+    </p>
+    <div class="row px-3">
+        <div class="col-12 text-center">
+            <button class="btn btn-outline-primary">
+                <i class="far fa-credit-card"></i>
+            </button>
+            <button class="btn btn-outline-primary">
+                <i class="far fa-handshake"></i>
+            </button>
+        </div>
+    </div>
+    <div class="p-3">
+        <button class="btn btn-primary w-100">
+            Confirm ride
+        </button>
+    </div>
+</div>
+{% endblock %}

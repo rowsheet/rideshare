@@ -30,6 +30,7 @@ dev_menu = {
     "ride_details": "ride_details",
     "past_rides": "past_rides",
     "add_tip": "add_tip",
+    "confirm_request": "confirm_request",
 }
 
 def basic_context(request):
@@ -151,6 +152,11 @@ def past_rides():
 def add_tip():
     context = basic_context(request)
     return render_template("pages/add_tip.html", **context)
+
+@app.route('/confirm_request')
+def confirm_request():
+    context = basic_context(request)
+    return render_template("pages/confirm_request.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
