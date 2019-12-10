@@ -3,7 +3,7 @@
 {% block mobile_content %}
 <div id="page_create_account">
     <div class="back_nav my-3 p-3">
-        <a href="verification_phone">
+        <a id="toggle_sidebar">
             <i class="material-icons">arrow_back_ios</i>
         </a>
     </div>
@@ -12,8 +12,8 @@
     </h4>
     <div class="mb-3 map_small bg-primary">
     </div>
-    <div class="row px-3">
-        <div class="col-6">
+    <div class="row mx-3">
+        <div class="col-6 px-0">
             <p class="text-primary m-0">
                 [ride.date],[ride.time]
             </p>
@@ -21,7 +21,7 @@
                 [ride.driver] in the [ride.make] [ride.model]
             </p>
         </div>
-        <div class="col-6 text-right">
+        <div class="col-6 px-0 text-right">
             <p class="m-0">
                 [ride.price]
             </p>

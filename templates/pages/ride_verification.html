@@ -3,7 +3,7 @@
 {% block mobile_content %}
 <div id="page_set_location" class="p-3">
     <div class="back_nav my-3">
-        <a href="verification_phone">
+        <a href="confirm_request">
             <i class="material-icons">arrow_back_ios</i>
         </a>
     </div>
@@ -11,7 +11,7 @@
         Ride Verification
     </h3>
     <br>
-    <p>
+    <p class="mb-3 text-center">
         Choose your verification color
     </p>
     {% for row in [
@@ -43,7 +43,7 @@
         </div>
     </div>
     {% endfor %}
-    <p>
+    <p class="mb-3 text-center">
         Choose your verification number
     </p>
     {% for row in [[1,2,3,4],[5,6,7,8],[9,10,11,12]] %}
