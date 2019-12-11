@@ -37,6 +37,7 @@ dev_menu = {
     "settings": "settings",
     "email": "email",
     "services": "services",
+    "phone_number": "phone_number",
 }
 
 def basic_context(request):
@@ -193,6 +194,11 @@ def email():
 def services():
     context = basic_context(request)
     return render_template("pages/services.html", **context)
+
+@app.route('/phone_number')
+def phone_number():
+    context = basic_context(request)
+    return render_template("pages/phone_number.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():

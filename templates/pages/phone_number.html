@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_verification_phone" class="p-3">
+    <div class="back_nav my-3">
+        <a href="account">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h3>Update your phone number</h3>
+    <h6>We’ll text you a code to verify your phone.</h6>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+                <i class="material-icons">local_phone</i>
+            </span>
+        </div>
+        <input type="text" placeholder="+1 (512) 555-5555." class="form-control"></input>
+    </div>
+    <br>
+    <h3>Enter the code we sent you</h3>
+    <input type="text" placeholder="X X X X X" class="form-control mb-3"></input>
+    <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+            <a class="float-right">
+                Save
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
