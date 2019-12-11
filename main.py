@@ -41,6 +41,8 @@ dev_menu = {
     "location": "location",
     "contacts": "contacts",
     "notifications": "notifications",
+    "color_verification": "color_verification",
+    "ride_status": "ride_status",
 }
 
 def basic_context(request):
@@ -217,6 +219,16 @@ def contacts():
 def notifications():
     context = basic_context(request)
     return render_template("pages/notifications.html", **context)
+
+@app.route('/color_verification')
+def color_verification():
+    context = basic_context(request)
+    return render_template("pages/color_verification.html", **context)
+
+@app.route('/ride_status')
+def ride_status():
+    context = basic_context(request)
+    return render_template("pages/ride_status.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():

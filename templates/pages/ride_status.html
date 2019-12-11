@@ -1,0 +1,99 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_ride_en_route" class="map_view">
+    <div class="map bg-primary">
+        <button id="toggle_sidebar" class="btn-light btn-round m-3">
+            <i class="material-icons">menu</i>
+        </button>
+    </div>
+    <div id="main_form" class="p-3 text-center">
+        <nav style="display: none;">
+            <div class="nav nav-pills" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-ride-status" data-toggle="tab" href="#nav-home" role="tab">
+                    <i class="material-icons">arrow_drop_up</i>
+                </a>
+                <a class="nav-item nav-link" id="nav-emergency" data-toggle="tab" href="#nav-profile" role="tab">
+                    <i class="material-icons">arrow_drop_down</i>
+                </a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel">
+                <div class="row">
+                    <div class="col-4">
+                        <h4>Your Ride</h4>
+                        <div id="profile_picture" class="bg-primary m-auto"></div>
+                        <p class="m-0">[driver.name]</p>
+                    </div>
+                    <div class="col-8">
+                        <br>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    Start
+                                </span>
+                            </div>
+                            <input type="text" placeholder="Current Location" class="form-control"></input>
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="material-icons">person_pin</i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    End
+                                </span>
+                            </div>
+                            <input type="text" placeholder="Search Destination" class="form-control"></input>
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="material-icons">add</i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-4">
+                        <button class="btn btn-danger btn-round"
+                                onclick="document.getElementById('nav-emergency').click()">
+                            <i class="fas fa-ambulance"></i>
+                        </button>
+                    </div>
+                    <div class="col-8">
+                        <button class="btn btn-primary w-100">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Share trip status
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel">
+                <h4 class="mb-3 text-left">
+                    <i class="fas fa-ambulance text-primary"></i>
+                    911 Assistance
+                    <i class="fas fa-times text-primary float-right"
+                        onclick="document.getElementById('nav-ride-status').click()">
+                    </i>
+                </h4>
+                <p class="text-center px-5">
+                    Your current location will be shared with authorities when you call 911.
+                </p>
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <h4>
+                            <button class="btn btn-danger btn-round">
+                                <i class="fas fa-phone"></i>
+                            </button>
+                            Call 911
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
