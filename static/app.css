@@ -84,6 +84,29 @@ h1,h2,h3,h4,h5,h6,p,a {
     width: 300px;
 }
 
+i.fas.fa-car.icon-driver {
+    color: white;
+    background: black;
+    border-radius: 100px;
+    height: 21px;
+    padding-top: 4px;
+    font-size: 13px;
+    width: 21px;
+    margin: 3px;
+    margin-right: 1px;
+}
+
+span.icon-h {
+    color: white;
+    background: black;
+    border-radius: 3px;
+    font-size: 13px;
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin: 2px;
+}
+
 /*--------------------------------------
  * PAGES
 --------------------------------------*/
@@ -113,6 +136,7 @@ h1,h2,h3,h4,h5,h6,p,a {
 #profile_picture {
     height: 100px;
     width: 100px;
+    border-radius: 50px;
     display: block;
 }
 
