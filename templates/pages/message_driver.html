@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_set_location" class="p-3">
+    <div class="back_nav my-3">
+        <a id="toggle_sidebar">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h4 class="mb-3">Contact your driver</h4>
+    <div class="row">
+        <div class="col-12">
+            <div id="profile_picture" class="bg-primary m-auto float-left"></div>
+        </div>
+    </div>
+    <p class="m-0">[driver.name]</p>
+    <div class="row my-3">
+        <div class="col-12">
+            <h4>
+                <button class="btn btn-primary btn-round">
+                    <i class="fas fa-phone"></i>
+                </button>
+                Call [driver.name] 
+            </h4>
+        </div>
+    </div>
+    <h4 class="mb-3">Send [driver.name] a message.</h4>
+    <textarea class="form-control" rows="7">
+    </textarea>
+    <div class="row p-3">
+        <div class="col-12">
+            <a class="float-right">
+                Done
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
