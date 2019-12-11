@@ -43,6 +43,7 @@ dev_menu = {
     "notifications": "notifications",
     "color_verification": "color_verification",
     "ride_status": "ride_status",
+    "feedback": "feedback",
 }
 
 def basic_context(request):
@@ -229,6 +230,11 @@ def color_verification():
 def ride_status():
     context = basic_context(request)
     return render_template("pages/ride_status.html", **context)
+
+@app.route('/feedback')
+def feedback():
+    context = basic_context(request)
+    return render_template("pages/feedback.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
