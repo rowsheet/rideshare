@@ -36,6 +36,7 @@ dev_menu = {
     "ride_en_route": "ride_en_route",
     "settings": "settings",
     "email": "email",
+    "services": "services",
 }
 
 def basic_context(request):
@@ -187,6 +188,11 @@ def settings():
 def email():
     context = basic_context(request)
     return render_template("pages/email.html", **context)
+
+@app.route('/services')
+def services():
+    context = basic_context(request)
+    return render_template("pages/services.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
