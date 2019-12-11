@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_verification_phone" class="p-3">
+    <div class="back_nav my-3">
+        <a href="/rider/account">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h3>E-mail</h3>
+    <h6>Enter your email to receive trip receipts, info, and updates about Homobiles.</h6>
+    <br>
+    <input type="text" placeholder="enter email here" class="form-control mb-3"></input>
+    <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+            <a class="float-right">
+                Save
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
