@@ -62,190 +62,195 @@ def index():
     context = basic_context(request)
     return render_template("pages/index.html", **context)
 
+@app.route('/driver/')
+def driver_splash_page():
+    context = basic_context(request)
+    return render_template("pages/driver/splash_page.html", **context)
+
 @app.route('/rider/')
 def rider_splash_page():
     context = basic_context(request)
-    return render_template("pages/splash_page.html", **context)
+    return render_template("pages/rider/splash_page.html", **context)
 
 @app.route('/rider/main_screen')
-def main_screen():
+def rider_main_screen():
     context = basic_context(request)
-    return render_template("pages/main_screen.html", **context)
+    return render_template("pages/rider/main_screen.html", **context)
 
 @app.route('/rider/verification_phone')
-def verification_phone():
+def rider_verification_phone():
     context = basic_context(request)
-    return render_template("pages/verification_phone.html", **context)
+    return render_template("pages/rider/verification_phone.html", **context)
 
 @app.route('/rider/verification_code')
-def verification_code():
+def rider_verification_code():
     context = basic_context(request)
-    return render_template("pages/verification_code.html", **context)
+    return render_template("pages/rider/verification_code.html", **context)
 
 @app.route('/rider/set_location')
-def set_location():
+def rider_set_location():
     context = basic_context(request)
-    return render_template("pages/set_location.html", **context)
+    return render_template("pages/rider/set_location.html", **context)
 
 @app.route('/rider/set_location_later')
-def set_location_later():
+def rider_set_location_later():
     context = basic_context(request)
-    return render_template("pages/set_location_later.html", **context)
+    return render_template("pages/rider/set_location_later.html", **context)
 
 @app.route('/rider/account')
-def account():
+def rider_account():
     context = basic_context(request)
-    return render_template("pages/account.html", **context)
+    return render_template("pages/rider/account.html", **context)
 
 @app.route('/rider/create_account')
-def create_account():
+def rider_create_account():
     context = basic_context(request)
-    return render_template("pages/create_account.html", **context)
+    return render_template("pages/rider/create_account.html", **context)
 
 @app.route('/rider/account_created')
-def account_created():
+def rider_account_created():
     context = basic_context(request)
-    return render_template("pages/account_created.html", **context)
+    return render_template("pages/rider/account_created.html", **context)
 
 @app.route('/rider/payment_methods')
-def payment_methods():
+def rider_payment_methods():
     context = basic_context(request)
-    return render_template("pages/payment_methods.html", **context)
+    return render_template("pages/rider/payment_methods.html", **context)
 
 @app.route('/rider/update_paypal')
-def update_paypal():
+def rider_update_paypal():
     context = basic_context(request)
-    return render_template("pages/update_paypal.html", **context)
+    return render_template("pages/rider/update_paypal.html", **context)
 
 @app.route('/rider/update_credit_card')
-def update_credit_card():
+def rider_update_credit_card():
     context = basic_context(request)
-    return render_template("pages/update_credit_card.html", **context)
+    return render_template("pages/rider/update_credit_card.html", **context)
 
 @app.route('/rider/profile')
-def profile():
+def rider_profile():
     context = basic_context(request)
-    return render_template("pages/profile.html", **context)
+    return render_template("pages/rider/profile.html", **context)
 
 @app.route('/rider/add_trusted_contacts')
-def add_trusted_contacts():
+def rider_add_trusted_contacts():
     context = basic_context(request)
-    return render_template("pages/add_trusted_contacts.html", **context)
+    return render_template("pages/rider/add_trusted_contacts.html", **context)
 
 @app.route('/rider/message_contact')
-def message_contact():
+def rider_message_contact():
     context = basic_context(request)
-    return render_template("pages/message_contact.html", **context)
+    return render_template("pages/rider/message_contact.html", **context)
 
 @app.route('/rider/help_the_community')
-def help_the_community():
+def rider_help_the_community():
     context = basic_context(request)
-    return render_template("pages/help_the_community.html", **context)
+    return render_template("pages/rider/help_the_community.html", **context)
 
 @app.route('/rider/confirm_donation')
-def confirm_donation():
+def rider_confirm_donation():
     context = basic_context(request)
-    return render_template("pages/confirm_donation.html", **context)
+    return render_template("pages/rider/confirm_donation.html", **context)
 
 @app.route('/rider/add_credit_card')
-def add_credit_card():
+def rider_add_credit_card():
     context = basic_context(request)
-    return render_template("pages/add_credit_card.html", **context)
+    return render_template("pages/rider/add_credit_card.html", **context)
 
 @app.route('/rider/donation_success')
-def donation_success():
+def rider_donation_success():
     context = basic_context(request)
-    return render_template("pages/donation_success.html", **context)
+    return render_template("pages/rider/donation_success.html", **context)
 
 @app.route('/rider/ride_details')
-def ride_details():
+def rider_ride_details():
     context = basic_context(request)
-    return render_template("pages/ride_details.html", **context)
+    return render_template("pages/rider/ride_details.html", **context)
 
 @app.route('/rider/past_rides')
-def past_rides():
+def rider_past_rides():
     context = basic_context(request)
-    return render_template("pages/past_rides.html", **context)
+    return render_template("pages/rider/past_rides.html", **context)
 
 @app.route('/rider/add_tip')
-def add_tip():
+def rider_add_tip():
     context = basic_context(request)
-    return render_template("pages/add_tip.html", **context)
+    return render_template("pages/rider/add_tip.html", **context)
 
 @app.route('/rider/confirm_request')
-def confirm_request():
+def rider_confirm_request():
     context = basic_context(request)
-    return render_template("pages/confirm_request.html", **context)
+    return render_template("pages/rider/confirm_request.html", **context)
 
 @app.route('/rider/ride_verification')
-def ride_verification():
+def rider_ride_verification():
     context = basic_context(request)
-    return render_template("pages/ride_verification.html", **context)
+    return render_template("pages/rider/ride_verification.html", **context)
 
 @app.route('/rider/searching_rides')
-def searching_rides():
+def rider_searching_rides():
     context = basic_context(request)
-    return render_template("pages/searching_rides.html", **context)
+    return render_template("pages/rider/searching_rides.html", **context)
 
 @app.route('/rider/ride_en_route')
-def ride_en_route():
+def rider_ride_en_route():
     context = basic_context(request)
-    return render_template("pages/ride_en_route.html", **context)
+    return render_template("pages/rider/ride_en_route.html", **context)
 
 @app.route('/rider/settings')
-def _settings():
+def rider__settings():
     context = basic_context(request)
-    return render_template("pages/settings.html", **context)
+    return render_template("pages/rider/settings.html", **context)
 
 @app.route('/rider/email')
-def email():
+def rider_email():
     context = basic_context(request)
-    return render_template("pages/email.html", **context)
+    return render_template("pages/rider/email.html", **context)
 
 @app.route('/rider/services')
-def services():
+def rider_services():
     context = basic_context(request)
-    return render_template("pages/services.html", **context)
+    return render_template("pages/rider/services.html", **context)
 
 @app.route('/rider/phone_number')
-def phone_number():
+def rider_phone_number():
     context = basic_context(request)
-    return render_template("pages/phone_number.html", **context)
+    return render_template("pages/rider/phone_number.html", **context)
 
 @app.route('/rider/location')
-def location():
+def rider_location():
     context = basic_context(request)
-    return render_template("pages/location.html", **context)
+    return render_template("pages/rider/location.html", **context)
 
 @app.route('/rider/contacts')
-def contacts():
+def rider_contacts():
     context = basic_context(request)
-    return render_template("pages/contacts.html", **context)
+    return render_template("pages/rider/contacts.html", **context)
 
 @app.route('/rider/notifications')
-def notifications():
+def rider_notifications():
     context = basic_context(request)
-    return render_template("pages/notifications.html", **context)
+    return render_template("pages/rider/notifications.html", **context)
 
 @app.route('/rider/color_verification')
-def color_verification():
+def rider_color_verification():
     context = basic_context(request)
-    return render_template("pages/color_verification.html", **context)
+    return render_template("pages/rider/color_verification.html", **context)
 
 @app.route('/rider/ride_status')
-def ride_status():
+def rider_ride_status():
     context = basic_context(request)
-    return render_template("pages/ride_status.html", **context)
+    return render_template("pages/rider/ride_status.html", **context)
 
 @app.route('/rider/feedback')
-def feedback():
+def rider_feedback():
     context = basic_context(request)
-    return render_template("pages/feedback.html", **context)
+    return render_template("pages/rider/feedback.html", **context)
 
 @app.route('/rider/message_driver')
-def message_driver():
+def rider_message_driver():
     context = basic_context(request)
-    return render_template("pages/message_driver.html", **context)
+    return render_template("pages/rider/message_driver.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():
