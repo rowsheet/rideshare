@@ -4,8 +4,10 @@
     flex-direction: row;
 }
 
-#desktop_content{
+#desktop_content {
     flex: auto;
+    height: 100vh;
+    overflow: scroll;
 }
 #desktop_content .container-fluid {
     min-height: calc(100vh - 57px);
