@@ -38,6 +38,9 @@ dev_menu = {
     "email": "email",
     "services": "services",
     "phone_number": "phone_number",
+    "location": "location",
+    "contacts": "contacts",
+    "notifications": "notifications",
 }
 
 def basic_context(request):
@@ -199,6 +202,21 @@ def services():
 def phone_number():
     context = basic_context(request)
     return render_template("pages/phone_number.html", **context)
+
+@app.route('/location')
+def location():
+    context = basic_context(request)
+    return render_template("pages/location.html", **context)
+
+@app.route('/contacts')
+def contacts():
+    context = basic_context(request)
+    return render_template("pages/contacts.html", **context)
+
+@app.route('/notifications')
+def notifications():
+    context = basic_context(request)
+    return render_template("pages/notifications.html", **context)
 
 @app.route('/auth_callback', methods=['GET'])
 def auth_callback():

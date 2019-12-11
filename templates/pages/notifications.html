@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block mobile_content %}
+<div id="page_verification_phone" class="p-3">
+    <div class="back_nav my-3">
+        <a href="account">
+            <i class="material-icons">arrow_back_ios</i>
+        </a>
+    </div>
+    <h3>Notifications</h3>
+    <h6>Allow us to continue sending you push notifications to update you about your ride.</h6>
+    <div class="p-3">
+        <input type="checkbox" class="form-check-input" id="services_1">
+        <label class="form-check-label w-100" for="services_1">
+            <h4>
+                Allow
+            </h4>
+        </label>
+    </div>
+    <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+            <a class="float-right">
+                Save
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
