@@ -314,6 +314,15 @@ def auth_callback():
         return resp
     return "Oops... Something went wrong."
 
+@app.route('/assets/js/api.js')
+def assets_js_api():
+    api_resp = requests.request(
+        method="GET",
+        url=settings.API_SERVER + "/assets/api.js",
+        # headers = {"Authorization": "Bearer " + str(session_id)},
+    )
+    return api_resp.text;
+
 @app.route('/assets/<path:path>')
 def assets(path):
     context = basic_context(request)
