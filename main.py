@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, Response, make_response, redirect, render_template
 import requests
 
@@ -312,6 +313,14 @@ def auth_callback():
         resp.set_cookie("session_id", session_id);
         return resp
     return "Oops... Something went wrong."
+
+@app.route('/assets/<path:path>')
+def assets(path):
+    context = basic_context(request)
+    try:
+        return render_template(os.path.join("assets", path), **context)
+    except Exception as ex:
+        return "404 Page not found. "
 
 @app.route('/<path:path>', methods=['GET', 'POST'])
 def catchall(path):
