@@ -6,43 +6,70 @@
 </div>
 <div class="p-3">
     <br>
-    <p class="mb-3">
-        <i class="fas fa-user-circle"></i>
-        my account 
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-car"></i>
-        availible pickups
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-clock"></i>
-        scheduled pickups 
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-cog"></i>
-        settings 
-    </p>
-    <!--
-    <p class="mb-3">
-        <i class="fas fa-address-card"></i>
-        my zone
-    </p>
-    -->
-    <p class="mb-3">
-        <i class="fas fa-car-side"></i>
-        past rides 
-    </p>
-    <p class="mb-3">
-        <span class="icon-h">H</span>
-        about homobiles 
-    </p>
-    <p>
-        <i class="fas fa-question-circle"></i>
-        help 
-    </p>
-    <br>
-    <p class="pt-3 border-top">
-        <i class="fas fa-road"></i>
-        Switch to rider 
-    </p>
+    {% with sidebar = [
+        {
+            "type": "link",
+            "title": "my account",
+            "href": "/driver/account",
+            "icon": "<i class='fas fa-user-circle'></i>",
+        },
+        {
+            "type": "link",
+            "title": "availible pickups",
+            "href": "/driver/availible_pickups",
+            "icon": "<i class='fas fa-car'></i>",
+        },
+        {
+            "type": "link",
+            "title": "scheduled pickups",
+            "href": "/driver/scheduled_pickups",
+            "icon": "<i class='fas fa-clock'></i>",
+        },
+        {
+            "type": "link",
+            "title": "settings",
+            "href": "/driver/settings",
+            "icon": "<i class='fas fa-cog'></i>",
+        },
+        {
+            "type": "link",
+            "title": "past rides",
+            "href": "/driver/past_rides",
+            "icon": "<i class='fas fa-car-side'></i>",
+        },
+        {
+            "type": "link",
+            "title": "about homobiles",
+            "href": "/driver/about",
+            "icon": "<span class='icon-h'>H</span>",
+        },
+        {
+            "type": "link",
+            "title": "help",
+            "href": "/driver/help",
+            "icon": "<i class='fas fa-question-circle'></i>",
+        },
+        {
+            "type": "linebreak",
+        },
+        {
+            "type": "link",
+            "title": "Switch to rider",
+            "href": "/rider",
+            "icon": "<i class='fas fa-road'></i>",
+        },
+    ] %}
+        {% for item in sidebar %}
+            {% if item.type == "link" %}
+            <a href="{{ item.href }}">
+                <p class="mb-3 text-primary">
+                    {{ item.icon | safe }}
+                    {{ item.title }}
+                </p>
+            </a>
+            {% elif item.type == "linebreak" %}
+            <div class="mb-3 w-100 border-top"></div>
+            {% endif %}
+        {% endfor %}
+    {% endwith %}
 </div>
