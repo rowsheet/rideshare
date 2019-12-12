@@ -1,11 +1,10 @@
-<div class="bg-light p-3 text-center border-bottom">
+<div class="bg-light p-3 text-center border-bottom mb-3">
     <div id="profile_picture" class="bg-primary m-auto">
     </div>
-    <p><strong>[driver.name]</strong></p>
-    <p>[driver.pronoun]</p>
+    <p><strong>[user.name]</strong></p>
+    <p>[user.pronoun]</p>
 </div>
 <div class="p-3">
-    <br>
     {% with sidebar = [
         {
             "type": "link",
@@ -62,7 +61,7 @@
         {% for item in sidebar %}
             {% if item.type == "link" %}
             <a href="{{ item.href }}">
-                <p class="mb-3 text-primary">
+                <p class="mb-3 text-dark">
                     {{ item.icon | safe }}
                     {{ item.title }}
                 </p>

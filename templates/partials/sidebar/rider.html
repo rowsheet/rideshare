@@ -1,50 +1,86 @@
-<div class="bg-light p-3 text-center border-bottom">
+<div class="bg-light p-3 text-center border-bottom mb-3">
     <div id="profile_picture" class="bg-primary m-auto">
     </div>
     <p><strong>[user.name]</strong></p>
     <p>[user.pronoun]</p>
 </div>
 <div class="p-3">
-    <br>
-    <p class="mb-3">
-        <i class="fas fa-car"></i>
-        request a ride
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-car-side"></i>
-        past rides 
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-user-circle"></i>
-        my account 
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-credit-card"></i>
-        payment method 
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-hand-holding-heart"></i>
-        donation station 
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-cog"></i>
-        settings 
-    </p>
-    <p class="mb-3">
-        <i class="fas fa-car icon-driver"></i>
-        become a driver 
-    </p>
-    <p class="mb-3">
-        <span class="icon-h">H</span>
-        about homobiles 
-    </p>
-    <p>
-        <i class="fas fa-question-circle"></i>
-        help 
-    </p>
-    <br>
-    <p class="pt-3 border-top">
-        <i class="fas fa-road"></i>
-        Switch to driver 
-    </p>
+    {% with sidebar = [
+        {
+            "type": "request a ride",
+            "title": "availible pickups",
+            "href": "/rider/availible_pickups",
+            "icon": "<i class='fas fa-car'></i>",
+        },
+        {
+            "type": "link",
+            "title": "past rides",
+            "href": "/rider/past_rides",
+            "icon": "<i class='fas fa-car-side'></i>",
+        },
+        {
+            "type": "link",
+            "title": "my account",
+            "href": "/rider/account",
+            "icon": "<i class='fas fa-user-circle'></i>",
+        },
+        {
+            "type": "link",
+            "title": "payment methods",
+            "href": "/rider/payment_methods",
+            "icon": "<i class='fas fa-credit-card'></i>",
+        },
+        {
+            "type": "link",
+            "title": "donation station",
+            "href": "/rider/help_the_community",
+            "icon": "<i class='fas fa-hand-holding-heart'></i>",
+        },
+        {
+            "type": "link",
+            "title": "settings",
+            "href": "/rider/settings",
+            "icon": "<i class='fas fa-cog'></i>",
+        },
+        {
+            "type": "link",
+            "title": "become a driver",
+            "href": "/rider/become_a_driver",
+            "icon": "<i class='fas fa-car icon-driver'></i>",
+        },
+        {
+            "type": "link",
+            "title": "about homobiles",
+            "href": "/rider/about",
+            "icon": "<span class='icon-h'>H</span>",
+        },
+        {
+            "type": "link",
+            "title": "help",
+            "href": "/rider/help",
+            "icon": "<i class='fas fa-question-circle'></i>",
+        },
+        {
+            "type": "linebreak",
+        },
+        {
+            "type": "link",
+            "title": "Switch to driver",
+            "href": "/driver",
+            "icon": "<i class='fas fa-road'></i>",
+        },
+    ] %}
+        {% for item in sidebar %}
+            {% if item.type == "link" %}
+            <a href="{{ item.href }}">
+                <p class="mb-3 text-dark">
+                    {{ item.icon | safe }}
+                    {{ item.title }}
+                </p>
+            </a>
+            {% elif item.type == "linebreak" %}
+            <div class="mb-3 w-100 border-top"></div>
+            {% endif %}
+        {% endfor %}
+    {% endwith %}
 </div>
