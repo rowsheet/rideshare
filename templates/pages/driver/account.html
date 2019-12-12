@@ -11,25 +11,37 @@
         Account
         <i class="material-icons float_right color_icon float-right">info</i>
     </h5>
-    <h5 class="p-3 border-bottom">
-        <i class="material-icons mr-3">person</i>
-        Profile 
-        <i class="material-icons color_icon float-right">arrow_forward_ios</i>
-    </h5>
-    <h5 class="p-3 border-bottom">
-        <i class="material-icons mr-3">credit_card</i>
-        Payment Methods 
-        <i class="material-icons color_icon float-right">arrow_forward_ios</i>
-    </h5>
-    <h5 class="p-3 border-bottom">
-        <i class="material-icons mr-3">email</i>
-        E-Mail 
-        <i class="material-icons color_icon float-right">arrow_forward_ios</i>
-    </h5>
-    <h5 class="p-3 border-bottom">
-        <i class="material-icons mr-3">phone</i>
-        [phone number] 
-        <i class="material-icons color_icon float-right">arrow_forward_ios</i>
-    </h5>
+    {% with sidebar = [
+        {
+            "title": "Profile",
+            "href": "/driver/profile",
+            "icon": "<i class='fas fa-user-circle'></i>",
+        },
+        {
+            "title": "Payment Methods",
+            "href": "/driver/payment_methods",
+            "icon": "<i class='fas fa-credit-card'></i>",
+        },
+        {
+            "title": "E-Mail",
+            "href": "/driver/email",
+            "icon": "<i class='fas fa-envelope'></i>",
+        },
+        {
+            "title": "Phone",
+            "href": "/driver/phone_number",
+            "icon": "<i class='fas fa-phone'></i>",
+        },
+    ] %}
+        {% for item in sidebar %}
+        <a href="{{ item.href }}">
+            <h5 class="p-3 border-bottom">
+                {{ item.icon | safe }}
+                {{ item.title }}
+                <i class="material-icons color_icon float-right">arrow_forward_ios</i>
+            </h5>
+        </a>
+        {% endfor %}
+    {% endwith %}
 </div>
 {% endblock %}
