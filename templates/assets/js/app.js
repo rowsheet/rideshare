@@ -1,4 +1,10 @@
 app = {
+    state: {
+        geolocation: {
+            lat: null,
+            lng: null,
+        },
+    },
     utils: {
         browser: {
             get_browser: function() {
@@ -63,29 +69,34 @@ switch (String(browser)) {
                 lat: 37.7749,
                 lng: -122.4194,
             },
-            init: function() {
-                console.log("INIT");
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    console.log("NAVIGATOR");
-                    app.utils.map.render(
-                        position.coords.latitude,
-                        position.coords.longitude,
-                        "device");
-                }, function() {
-                    console.log("GOOGLE");
-                    $.post("https://www.googleapis.com/geolocation/v1/geolocate?key={{ settings.GOOGLE_MAPS_API_KEY }}", function(response) {
-                        app.utils.map.render(
-                            response.location.lat,
-                            response.location.lng,
-                            "network");
-                    }).fail(function(error) {
-                        console.log("DEFAULT");
-                        app.utils.map.render(
-                            app.utils.map.default.lat,
-                            app.utils.map.default.lng,
-                            "default settings");
+            get_location: function() {
+                return new Promise(resolve => {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        resolve({
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                            strategy: "device",
+                        });
+                    }, function() {
+                        $.post("https://www.googleapis.com/geolocation/v1/geolocate?key={{ settings.GOOGLE_MAPS_API_KEY }}", function(response) {
+                            resolve({
+                                lat: response.location.lat,
+                                lng: response.location.lng,
+                                strategy: "network",
+                            });
+                        }).fail(function(error) {
+                            resolve({
+                                lat: app.utils.map.default.lat,
+                                lng: app.utils.map.default.lng,
+                                strategy: "default settings",
+                            });
+                        });
                     });
                 });
+            },
+            init: async function() {
+                var loc = await app.utils.map.get_location();
+                app.utils.map.render(loc.lat,loc.lng,loc.strategy);
             },
             render: function(lat, lng, strategy) {
                 var geoloc_msg = "";
@@ -133,12 +144,14 @@ switch (String(browser)) {
     },
     rider: {
         main_screen: {
-            search_destination: function(field) {
+            search_destination: function(field, click) {
                 var value = field.value;
-                if(event.key === 'Enter') {
+                if(event.key === 'Enter' || click) {
                     value = field.value;
+                    console.log("Search: " + value);
+                    response = api.v1.riders.rideshare.search_location(value);
+                    console.log(response);
                 }
-                console.log(value);
             }
         }
     }
