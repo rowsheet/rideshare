@@ -1,12 +1,12 @@
 {% extends "index.html" %}
 
 {% block mobile_content %}
-<div id="page_main_screen" class="p-3">
-    <div class="back_nav my-3">
-        <a href="/rider/add_trusted_contacts">
-            <i class="material-icons">arrow_back_ios</i>
-        </a>
-    </div>
+<a href="/rider/add_trusted_contacts">
+    <button id="toggle_sidebar" class="btn-white btn-round m-3">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+</a>
+<div id="page_main_screen" class="p-3 mt-5">
     <h4>Contact [contact.name]</h4>
     <small class="text-info mb-3">[contact.phone_number]</small>
     <div class="input-group mb-3">

@@ -1,12 +1,12 @@
 {% extends "index.html" %}
 
 {% block mobile_content %}
-<div id="page_set_location" class="p-3">
-    <div class="back_nav my-3">
-        <a id="toggle_sidebar">
-            <i class="material-icons">arrow_back_ios</i>
-        </a>
-    </div>
+<a href="/rider/main_screen">
+    <button id="toggle_sidebar" class="btn-white btn-round m-3">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+</a>
+<div id="page_set_location" class="p-3 mt-5">
     <h3>Where can we take you?</h3>
     <div class="input-group mb-3">
         <div class="input-group-prepend">

@@ -5,40 +5,114 @@
     <button id="toggle_sidebar" class="btn-primary btn-round m-3">
         <i class="material-icons">menu</i>
     </button>
+    <div id="geoloc_msg_alert" class="alert alert-primary m-0 py-1 alert-dismissible fade show hidden" role="alert">
+        <div id="geoloc_msg" class="text-right">
+        </div>
+        <button type="button" class="close p-0 pr-3" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+    </div>
     <div id="map" class="map bg-light p-3 border-bottom">
-        <div class="loading m-5 text-center" style="padding-top: 50%;">
-            <i class="fas fa-sync fa-spin text-primary"
+        <div class="loading text-center" style="padding-top: calc(50% - 50px);">
+            <i class="fas fa-sync fa-spin text-primary mb-1"
                 style="font-size: 50px; width: 100%; margin-bottom: 25px;"></i>
             <h1 class="text-primary">
                 Loading
             </h1>
         </div>
     </div>
-    <div id="geoloc_msg_alert" class="alert alert-primary m-0 py-1 alert-dismissible fade show hidden" role="alert">
-        <div id="geoloc_msg">
-        </div>
-        <button type="button" class="close p-2 px-3" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-    </div>
-    <div id="main_form" class="p-3">
-        <h4>Where can we take you?</h4>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend"
-                 onclick="app.rider.main_screen.search_destination(this.nextElementSibling)">
-                <span class="input-group-text">
-                    <i class="material-icons">search</i>
-                </span>
+    <div id="main_form" class="p-0">
+        <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="main-tab" data-toggle="tab" href="#main" role="tab">M</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="destination-tab" data-toggle="tab" href="#destination" role="tab">D</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="origin-tab" data-toggle="tab" href="#origin" role="tab">O</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab">S</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active p-2" id="main" role="tabpanel">
+                <h4 class="mb-3">Where can we take you?</h4>
+                <small>End Location</small>
+                <div class="input-group mb-0" id="rider_distination_input">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </span>
+                    </div>
+                    <input type="text" placeholder="Search Destination" class="form-control"
+                        style="border-right: none;" onkeydown="app.rider.main_screen.search_destination(this)"></input>
+                    <div class="input-group-append"
+                         onclick="app.rider.main_screen.search_destination(this.previousElementSibling, true)">
+                        <span class="input-group-text bg-primary" style="border: none;">
+                            <i class="fas fa-search text-light"></i>
+                        </span>
+                    </div>
+                </div>
+                <small>Start Location</small>
+                <div class="input-group mb-0" id="rider_origin_input">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                    </div>
+                    <input type="text" placeholder="Current Location" class="form-control"
+                        style="border-right: none;" onkeydown="app.rider.main_screen.search_origin(this)"></input>
+                    <div class="input-group-append"
+                         onclick="app.rider.main_screen.search_origin(this.previousElementSibling, true)">
+                        <span class="input-group-text bg-primary" style="border: none;">
+                            <i class="fas fa-search text-light"></i>
+                        </span>
+                    </div>
+                </div>
+                <small>Pickup Time</small>
+                <div class="input-group mb-2" id="rider_pickup_time_input">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-clock"></i>
+                        </span>
+                    </div>
+                    <input type="text" placeholder="ASAP" class="form-control"
+                        style="border-right: none;" onkeydown="app.rider.main_screen.search_destination(this)"></input>
+                    <div class="input-group-append"
+                         onclick="app.rider.main_screen.search_destination(this.nextElementSibling, true)">
+                        <span class="input-group-text bg-primary" style="border: none;">
+                            <i class="fas fa-hand-pointer text-light"></i>
+                        </span>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-primary w-100">
+                    Request a ride
+                </button>
             </div>
-            <input type="text" placeholder="Search destination from a ride ASAP" class="form-control" onkeydown="app.rider.main_screen.search_destination(this)"></input>
-        </div>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="material-icons">today</i>
-                </span>
+            <div class="tab-pane fade" id="destination" role="tabpanel">
+                <div class="row p-2 m-0 border-bottom">
+                    <div class="col-6 p-0 pr-1">
+                        <button type="button" class="btn btn-primary btn-sm w-100" onclick="$('#main-tab').click()">
+                            <nobr><i class="fas fa-search"></i>search</nobr>
+                        </button>
+                    </div>
+                    <div class="col-6 p-0 pl-1">
+                        <button type="button" class="btn btn-primary btn-sm w-100">
+                            <nobr><i class="fas fa-bookmark"></i>bookmarks</nobr>
+                        </button>
+                    </div>
+                </div>
+                <div id="destination_search_results" class="border-bottom bg-light" style="max-height: 50%; overflow: scroll;">
+                </div>
             </div>
-            <input type="text" placeholder="Schedule a future ride." class="form-control"></input>
+            <div class="tab-pane fade" id="origin" role="tabpanel">
+                three
+            </div>
+            <div class="tab-pane fade" id="schedule" role="tabpanel">
+                four
+            </div>
         </div>
     </div>
 </div>

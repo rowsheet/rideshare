@@ -1,4 +1,4 @@
-<div class="bg-light p-3 text-center border-bottom mb-3">
+<div class="bg-light p-3 text-center border-bottom stick_top">
     <div id="profile_picture" class="bg-primary m-auto">
     </div>
     <p><strong>[user.name]</strong></p>
@@ -7,68 +7,56 @@
 <div class="p-3">
     {% with sidebar = [
         {
-            "type": "link",
             "title": "my account",
             "href": "/driver/account",
             "icon": "<i class='fas fa-user-circle'></i>",
         },
         {
-            "type": "link",
             "title": "availible pickups",
             "href": "/driver/availible_pickups",
             "icon": "<i class='fas fa-car'></i>",
         },
         {
-            "type": "link",
             "title": "scheduled pickups",
             "href": "/driver/scheduled_pickups",
             "icon": "<i class='fas fa-clock'></i>",
         },
         {
-            "type": "link",
             "title": "settings",
             "href": "/driver/settings",
             "icon": "<i class='fas fa-cog'></i>",
         },
         {
-            "type": "link",
             "title": "past rides",
             "href": "/driver/past_rides",
             "icon": "<i class='fas fa-car-side'></i>",
         },
         {
-            "type": "link",
             "title": "about homobiles",
             "href": "/driver/about",
             "icon": "<span class='icon-h'>H</span>",
         },
         {
-            "type": "link",
             "title": "help",
             "href": "/driver/help",
             "icon": "<i class='fas fa-question-circle'></i>",
         },
-        {
-            "type": "linebreak",
-        },
-        {
-            "type": "link",
-            "title": "Switch to rider",
-            "href": "/rider",
-            "icon": "<i class='fas fa-road'></i>",
-        },
     ] %}
         {% for item in sidebar %}
-            {% if item.type == "link" %}
             <a href="{{ item.href }}">
                 <p class="mb-3 text-dark">
                     {{ item.icon | safe }}
                     {{ item.title }}
                 </p>
             </a>
-            {% elif item.type == "linebreak" %}
-            <div class="mb-3 w-100 border-top"></div>
-            {% endif %}
         {% endfor %}
     {% endwith %}
+</div>
+<div class="pb-3 pl-3 pr-3 bg-white stick_bottom">
+    <a href="/rider">
+        <p class="text-dark border-top pt-3">
+            <i class="fas fa-road"></i>
+            Switch to rider 
+        </p>
+    </a>
 </div>

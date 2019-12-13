@@ -1,12 +1,12 @@
 {% extends "index.html" %}
 
 {% block mobile_content %}
-<div id="page_set_location" class="p-3">
-    <div class="back_nav my-3">
-        <a href="/rider/payment_methods">
-            <i class="material-icons">arrow_back_ios</i>
-        </a>
-    </div>
+<a href="/rider/payment_methods">
+    <button id="toggle_sidebar" class="btn-white btn-round m-3">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+</a>
+<div id="page_set_location" class="p-3 mt-5">
     <h3>Update Payment Method</h3>
     <br>
     <p class="mb-1">Credit Card</p>

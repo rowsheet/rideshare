@@ -1,12 +1,12 @@
 {% extends "index.html" %}
 
 {% block mobile_content %}
-<div id="page_create_account">
-    <div class="back_nav my-3 p-3">
-        <a href="/rider/past_rides">
-            <i class="material-icons">arrow_back_ios</i>
-        </a>
-    </div>
+<a href="/rider/past_rides">
+    <button id="toggle_sidebar" class="btn-white btn-round m-3">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+</a>
+<div id="page_create_account" class="pt-3 mt-5">
     <h4 class="px-3 mb-3">
         Add Tip 
     </h4>
