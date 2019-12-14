@@ -53,6 +53,50 @@
     overflow-x: scroll;
 }
 
+div#main_form {
+    z-index: 1;
+}
+
+div#main_form.expanded {
+    position: absolute;
+    width: 100%;
+}
+
+div.on_expanded {
+    display: none;
+}
+
+div#main_form.expanded div.on_expanded {
+    display: flex;
+    flex-direction: column;
+}
+
+div.on_collapsed {
+    display: block;
+}
+
+div#main_form.expanded div.on_collapsed {
+    display: none;
+}
+
+div#pickup_time_picker_button span {
+    width: fit-content;
+}
+
+div#pickup_time_picker_button i:first-child {
+    width: 18px;
+    font-size: 17px;
+}
+
+div#pickup_time_picker_button i:last-child {
+    width: 10px;
+    font-size: 11px;
+}
+
+.btn-white {
+    background: white;
+}
+
 /*--------------------------------------
  * COMPONENTS
 --------------------------------------*/
@@ -99,7 +143,6 @@ i.fas {
     position: fixed;
     z-index: 1;
     margin: 0px !important;
-    border: 1px solid white;
     top: 15px;
     left: 15px;
 }
@@ -158,6 +201,10 @@ div#map_search_results {
     overflow: scroll;
 }
 
+input {
+    text-overflow: ellipsis;
+}
+
 .input-group-text {
     width: 55px;
     padding-left: 10px;
@@ -176,6 +223,25 @@ div#map_search_results {
 .stick_bottom {
     position: sticky;
     bottom: 0px;
+}
+
+div#destination_search_results_wrapper.collapsed {
+    position: absolute;
+    height: 25vh;
+    overflow: scroll;
+    top: 75vh;
+    background: white;
+    width: calc(100% - 30px);
+    margin: 0px 15px 0px 15px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+div#destination_search_results_wrapper .header {
+    z-index: 0;
+}
+
+div#destination_search_results_wrapper.collapsed .header {
+    z-index: 1;
 }
 
 /*--------------------------------------
@@ -226,4 +292,21 @@ div#map_search_results {
     display: inline-block;
     float: left;
     width: 0px;
+}
+
+/*--------------------------------------
+ * EXTRA
+--------------------------------------*/
+
+input {
+    border: none !important;
+    background: #eaeef3 !important;
+}
+span.input-group-text {
+    border: none;
+    background: #3b608859;
+    color: white;
+}
+.btn, #toggle_sidebar, .uk-offcanvas-bar, #reqeust_form, #destination_search_results_wrapper {
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0,0,0,.12);
 }

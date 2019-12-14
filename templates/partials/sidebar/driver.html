@@ -44,9 +44,9 @@
     ] %}
         {% for item in sidebar %}
             <a href="{{ item.href }}">
-                <p class="mb-3 text-dark">
+                <p class="mb-2 text-dark">
                     {{ item.icon | safe }}
-                    {{ item.title }}
+                    <span class="small">{{ item.title }}</span>
                 </p>
             </a>
         {% endfor %}
@@ -56,7 +56,7 @@
     <a href="/rider">
         <p class="text-dark border-top pt-3">
             <i class="fas fa-road"></i>
-            Switch to rider 
+            <span class="small">Switch to rider</span>
         </p>
     </a>
 </div>

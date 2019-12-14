@@ -57,7 +57,10 @@ app = {
             },
             init: async function() {
                 var loc = await app.utils.map.get_location();
+                setState("my_location", loc);
                 app.utils.map.render(loc.lat,loc.lng,loc.strategy);
+                var my_loc_rev_geo = await api.v1.riders.rideshare.reverse_geocode(loc.lat, loc.lng);
+                app.rider.main_screen.set_origin(my_loc_rev_geo.formatted_address, my_loc_rev_geo.place_id);
             },
             render: function(lat, lng, strategy) {
                 utils.set_geolocation_msg(strategy);
@@ -78,6 +81,22 @@ app = {
     },
     rider: {
         main_screen: {
+            toggle_search_results_collapse: function() {
+                $("#destination_search_results_wrapper").toggleClass("collapsed");
+            },
+            set_origin: function(formatted_address, place_id) {
+                setState("origin", {
+                    "formatted_address": formatted_address,
+                    "place_id": place_id,
+                });
+                $("#rider_distination_input").val(formatted_address);
+            },
+            collapse: function() {
+                $("#main_form").removeClass("expanded");
+            },
+            onfocus: function() {
+                $("#main_form").addClass("expanded");
+            },
             search_destination: async function(field, click, page=1) {
                 var value = field.value;
                 if(event.key === 'Enter' || click) {
@@ -88,6 +107,7 @@ app = {
                         my_loc.lat, my_loc.lng, value);
                     var result_list = utils.get_result_list(response.results);
                     $("#destination_search_results").html(result_list);
+                    $("#destination_search_results_wrapper").removeClass("hidden");
                     var map = new google.maps.Map(document.getElementById('map'), {
                         center: {lat: my_loc.lat, lng: my_loc.lng},
                         zoom: 13,
