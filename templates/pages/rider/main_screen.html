@@ -2,80 +2,133 @@
 
 {% block mobile_content %}
 <div id="page_main_screen">
-    <button id="toggle_sidebar" class="btn-primary btn-round m-3">
+    <button id="toggle_sidebar" class="btn-dark btn-round m-3">
         <i class="material-icons">menu</i>
     </button>
-    <div id="geoloc_msg_alert" class="alert alert-primary m-0 py-1 alert-dismissible fade show hidden" role="alert">
-        <div id="geoloc_msg" class="text-right">
+    <div id="main_form_on_expanded" class="bg-grey collapsed border-bottom">
+        <div class="p-2">
+            <button id="main_form_back"
+                class="btn btn-danger btn-sm mb-2"
+                onclick="app.rider.main_screen.collapse(this)">
+                <i class="fas fa-arrow-circle-left"></i>
+                Back
+            </button>
+            <div class="input-group input-group-sm mb-2 bg-white">
+                <div class="input-group-prepend">
+                    <button class="btn btn-secondary" style="box-shadow: none;">
+                        <i class="fas fa-crosshairs"></i>
+                        Start
+                    </button>
+                </div>
+                <input id="rider_origin_input" type="text"
+                    placeholder="Loading your location..." class="form-control form-control-sm"
+                    onkeydown="app.rider.main_screen.search_destination(this)"
+                    onfocus="app.rider.main_screen.onfocus(this)"
+                    style="border-radius: 0px 100px 100px 0px;"
+                    ></input>
+            </div>
+            <div class="input-group input-group-sm mb-0 bg-white">
+                <div class="input-group-prepend">
+                    <button class="btn btn-dark" style="box-shadow: none;"
+                        onclick="app.rider.main_screen.search_destination('rider_distination_input', true)">
+                        <i class="fas fa-map-marker-alt"></i>
+                        End
+                    </button>
+                </div>
+                <input id="rider_distination_input" type="text" placeholder="Search Destination" class="form-control form-control-sm border-right"
+                    onkeydown="app.rider.main_screen.search_destination('rider_distination_input')"
+                    onfocus="app.rider.main_screen.onfocus(this)"
+                    ></input>
+                <div id="pickup_time_picker_button" class="input-group-append"
+                    onclick="$('#pickup_time_picker_modal_button').click()">
+                    <button class="btn btn-primary w-100 text-light"
+                        style="border-radius: 0px 15px 15px 0px;">
+                        <i class="fas fa-clock"></i>
+                        Now
+                        <i class="fas fa-caret-down float-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <button type="button" class="close p-0 pr-3" data-dismiss="alert">
+    </div>
+    <div id="destination_search_results_header" class="hidden empty">
+        <div class="header bg-white border-bottom w-100 text-secondary text-center small"
+             style="position: sticky; top: 0px; z-index: 1;">
+            <div class="row">
+                <div class="col-6">
+                    <p class="text-center" onclick="app.rider.main_screen.toggle_search_results_collapse()">
+                        <i class="far fa-caret-square-up"></i>
+                        Results
+                    </p>
+                </div>
+                <div class="col-6">
+                    <p class="text-center" onclick="$('#main_form_back').click()">
+                        <i class="fas fa-expand"></i>
+                        Map 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="geoloc_msg_alert" class="alert alert-secondary m-0 py-1 alert-dismissible fade show bg-white text-secondary border-top-0 border-left-0 border-right-0" role="alert">
+        <div id="geoloc_msg" class="text-right border-0 text-secondary">
+        </div>
+        <button type="button" class="close p-0 pr-3 text-primary" data-dismiss="alert">
             <span>&times;</span>
         </button>
     </div>
-    <div id="map" class="map bg-primary p-3 border-bottom">
-        <div class="loading text-center" style="padding-top: calc(50% - 50px);">
-            <i class="fas fa-sync fa-spin text-white mb-1"
+    <div id="map" class="map border-bottom">
+        <div class="loading text-center h-100 bg-light" style="padding-top: calc(50% - 50px);">
+            <i class="fas fa-sync fa-spin text-primary mb-1"
                 style="font-size: 50px; width: 100%; margin-bottom: 25px;"></i>
-            <h1 class="text-white">
+            <h1 class="text-primary">
                 Loading
             </h1>
         </div>
     </div>
-    <div id="main_form" class="p-0 bg-white">
-        <div class="on_expanded">
-            <div id="reqeust_form" class="p-2 bg-white" style="position: sticky; top: 0px; z-index: 1;">
-                <button class="btn btn-primary mb-2"
-                    onclick="app.rider.main_screen.collapse(this)">
-                    <i class="fas fa-arrow-circle-left"></i>
-                </button>
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Start</span>
-                    </div>
-                    <input id="rider_distination_input" type="text" placeholder="Search Destination" class="form-control form-control-sm"
-                        onkeydown="app.rider.main_screen.search_destination(this)"
-                        onfocus="app.rider.main_screen.onfocus(this)"
-                        ></input>
+    <div id="main_form" class="p-0 bg-grey">
+        <div id="main_form_on_collapsed" class="p-2">
+            <div class="input-group input-group-sm mb-2 bg-white">
+                <div class="input-group-prepend">
+                    <button class="btn btn-secondary" style="box-shadow: none;">
+                        <i class="fas fa-crosshairs"></i>
+                        Start
+                    </button>
                 </div>
-                <div class="input-group input-group-sm mb-0" id="rider_distination_input">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">End</span>
-                    </div>
-                    <input type="text" placeholder="Search Destination" class="form-control form-control-sm"
-                        onkeydown="app.rider.main_screen.search_destination(this)"
-                        onfocus="app.rider.main_screen.onfocus(this)"
-                        ></input>
-                </div>
+                <input id="rider_origin_input_bottom" type="text" placeholder="Loading your location..." class="form-control form-control-sm"
+                    onkeydown="app.rider.main_screen.search_destination(this)"
+                    onfocus="app.rider.main_screen.onfocus(this)"
+                    style="border-radius: 0px 100px 100px 0px;"
+                    ></input>
             </div>
-            <div id="destination_search_results_wrapper" class="hidden">
-                <div class="header bg-primary border-bottom w-100 text-light text-center"
-                     style="position: sticky; top: 0px;">
-                    <p onclick="app.rider.main_screen.toggle_search_results_collapse()">
-                        Results<i class="fas fa-sort-up"></i>
-                    </p>
+            <div class="input-group input-group-sm mb-0 bg-white">
+                <div class="input-group-prepend">
+                    <button class="btn btn-dark" style="box-shadow: none;"
+                        onclick="document.getElementById('rider_distination_input_bottom').focus()">
+                        <i class="fas fa-map-marker-alt"></i>
+                        End
+                    </button>
                 </div>
-                <div id="destination_search_results"></div>
-            </div>
-        </div>
-        <div class="on_collapsed p-2">
-            <div class="input-group input-group-sm mb-0" id="rider_distination_input">
-                <input type="text" placeholder="Search Destination" class="form-control"
+                <input id="rider_distination_input_bottom"
+                    type="text" placeholder="Where to?" class="form-control border-right"
                     style="border-right: none;"
                     onkeydown="app.rider.main_screen.search_destination(this)"
                     onfocus="app.rider.main_screen.onfocus(this)"
                     ></input>
                 <div id="pickup_time_picker_button" class="input-group-append"
                     onclick="$('#pickup_time_picker_modal_button').click()">
-                    <span class="input-group-text bg-primary" style="border: none;">
-                        <nobr class="text-light">
-                            <i class="fas fa-clock"></i>
-                            Now
-                            <i class="fas fa-angle-down"></i>
-                        </nobr>
-                    </span>
+                    <button class="btn btn-primary w-100 text-light"
+                        style="border-radius: 0px 15px 15px 0px;">
+                        <i class="fas fa-clock"></i>
+                        Now
+                        <i class="fas fa-caret-down float-right ml-2"></i>
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="destination_search_results_wrapper" class="hidden empty">
+        <div id="destination_search_results"></div>
     </div>
 </div>
 

@@ -53,6 +53,13 @@
     overflow-x: scroll;
 }
 
+.location_search_result_text p {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 div#main_form {
     z-index: 1;
 }
@@ -62,44 +69,115 @@ div#main_form.expanded {
     width: 100%;
 }
 
-div.on_expanded {
-    display: none;
+#main_form_on_expanded.collapsed {
+    padding: 0px !important;
 }
 
-div#main_form.expanded div.on_expanded {
-    display: flex;
-    flex-direction: column;
+#main_form_on_expanded {
+    height: 0px;
+    overflow: hidden;
+    transition: 0.25s;
+    z-index: 1;
 }
 
-div.on_collapsed {
+#main_form_on_expanded.expanded {
+    transition: 0.25s;
+    height: 124px;
+    flex-shrink: 0;
+}
+
+#main_form_on_expanded button, #main_form_on_collapsed button {
+    width: 79px;
+    text-align: left;
+    padding-left: 9px;
+}
+
+#main_form_on_expanded button i, #main_form_on_collapsed button i {
+    width: 14px;
+    background: none;
+    float: left;
+    padding: 3px;
+    margin-right: 9px;
+}
+
+#main_form_on_collapsed {
     display: block;
 }
 
-div#main_form.expanded div.on_collapsed {
+#main_form_on_collapsed.collapsed {
+    height: 0px;
+    padding: 0px !important;
+    transition: 0.25s;
+    overflow: hidden;
+}
+
+
+div#destination_search_results_wrapper.hidden {
     display: none;
 }
 
-div#pickup_time_picker_button span {
-    width: fit-content;
+div#destination_search_results_wrapper {
+    height: calc(100vh - 124px);
+    overflow: scroll;
+    transition: 0.25s;
 }
 
-div#pickup_time_picker_button i:first-child {
-    width: 18px;
-    font-size: 17px;
+div#destination_search_results_wrapper.collapsed {
+    height: calc((100vh - 124px) / 2);
+    transition: 0.25s;
 }
 
-div#pickup_time_picker_button i:last-child {
-    width: 10px;
-    font-size: 11px;
+div#destination_search_results_header.empty {
+    display: none;
 }
 
-.btn-white {
-    background: white;
+div#destination_search_results_header i.far.fa-caret-square-up {
+    transform: rotate(0deg);
+    transition: 0.25s;
+}
+
+div#destination_search_results_header.collapsed i.far.fa-caret-square-up {
+    transform: rotate(180deg);
+    transition: 0.25s;
+}
+
+div#destination_search_results_wrapper.empty {
+    height: 0px;
+}
+
+button#toggle_sidebar.main_screen_expanded {
+    display: none;
+}
+
+#page_main_screen .input-group input, .input-group-append button {
+    box-shadow: none;
+}
+
+#page_main_screen .input-group * {
+    box-shadow: none;
+}
+
+#page_main_screen .input-group input {
+    background: white !important;
+}
+
+#page_main_screen .input-group {
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.1), 0px 2px 2px 0px rgba(0, 0, 0, 0.09), 0px 1px 5px 0px rgba(0,0,0,.12);
+    border-radius: 100px;
+    overflow: hidden;
 }
 
 /*--------------------------------------
  * COMPONENTS
 --------------------------------------*/
+
+.bg-grey {
+    background: #eaeef3;
+}
+
+.btn-white {
+    background: white;
+}
 
 .btn-round {
     height: 50px;
@@ -145,6 +223,7 @@ i.fas {
     margin: 0px !important;
     top: 15px;
     left: 15px;
+    transition: 0.25s;
 }
 
 #toggle_sidebar i.fas {
@@ -225,25 +304,6 @@ input {
     bottom: 0px;
 }
 
-div#destination_search_results_wrapper.collapsed {
-    position: absolute;
-    height: 25vh;
-    overflow: scroll;
-    top: 75vh;
-    background: white;
-    width: calc(100% - 30px);
-    margin: 0px 15px 0px 15px;
-    border-radius: 5px 5px 0px 0px;
-}
-
-div#destination_search_results_wrapper .header {
-    z-index: 0;
-}
-
-div#destination_search_results_wrapper.collapsed .header {
-    z-index: 1;
-}
-
 /*--------------------------------------
  * PAGES
 --------------------------------------*/
@@ -262,6 +322,7 @@ div#destination_search_results_wrapper.collapsed .header {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 #page_main_screen .map {

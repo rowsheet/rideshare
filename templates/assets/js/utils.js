@@ -1,3 +1,16 @@
+function setState(key, val) {
+    sessionStorage.setItem(key, JSON.stringify(val));
+}
+
+function getState(key) {
+    var obj = sessionStorage.getItem(key);
+    if (obj) {
+        return JSON.parse(obj);
+    }
+    return "";
+}
+
+
 utils = {
     config: {
         geolocation_url: "https://www.googleapis.com/geolocation/v1/geolocate?key={{ settings.GOOGLE_MAPS_API_KEY }}",
@@ -63,13 +76,13 @@ utils = {
         var link = utils.get_enable_geolocation_link();
         if (strategy == "network") {
             geoloc_msg = `
-<p>Estimating your geolocation from your <a href="${link}">${strategy}</a>.<p>`;
+<p>Estimating your geolocation from your <a class="text-primary" href="${link}">${strategy}</a>.<p>`;
         } else if (strategy == "device") {
             geoloc_msg = `
-<p>Getting your geolocation from your <a href="${link}">${strategy}</a>.<p>`;
+<p>Getting your geolocation from your <a class="text-primary" href="${link}">${strategy}</a>.<p>`;
         } else {
             geoloc_msg = `
-<p>Assuming your geolocation from your <a href="${link}">${strategy}</a>.<p>`;
+<p>Assuming your geolocation from your <a class="text-primary" href="${link}">${strategy}</a>.<p>`;
         }
         $("#geoloc_msg").html(`
             <small>
@@ -80,31 +93,56 @@ utils = {
     },
     icons: {
         my_loc: {
-            path: 'M11 2c-3.9 0-7 3.1-7 7 0 5.3 7 13 7 13 0 0 7-7.7 7-13 0-3.9-3.1-7-7-7Zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5 0-1.4 1.1-2.5 2.5-2.5 1.4 0 2.5 1.1 2.5 2.5 0 1.4-1.1 2.5-2.5 2.5Z',
-            scale: 3,
-            anchor: new google.maps.Point(11, 22),
+            // path: 'M11 2c-3.9 0-7 3.1-7 7 0 5.3 7 13 7 13 0 0 7-7.7 7-13 0-3.9-3.1-7-7-7Zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5 0-1.4 1.1-2.5 2.5-2.5 1.4 0 2.5 1.1 2.5 2.5 0 1.4-1.1 2.5-2.5 2.5Z',
+            path: 'M500 224h-30.364C455.724 130.325 381.675 56.276 288 42.364V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v30.364C130.325 56.276 56.276 130.325 42.364 224H12c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h30.364C56.276 381.675 130.325 455.724 224 469.636V500c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12v-30.364C381.675 455.724 455.724 381.675 469.636 288H500c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12zM288 404.634V364c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40.634C165.826 392.232 119.783 346.243 107.366 288H148c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12h-40.634C119.768 165.826 165.757 119.783 224 107.366V148c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12v-40.634C346.174 119.768 392.217 165.757 404.634 224H364c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40.634C392.232 346.174 346.243 392.217 288 404.634zM288 256c0 17.673-14.327 32-32 32s-32-14.327-32-32c0-17.673 14.327-32 32-32s32 14.327 32 32z',
+            // scale: 3,
+            scale: 0.1,
+            // anchor: new google.maps.Point(11, 22),
+            anchor: new google.maps.Point(231, 231),
             fillOpacity: 1,
             fillColor: "#007bfe",
             strokeOpacity: 0
         },
     },
-    get_result_list: function(results) {
-        var list = results.map(result => `
-<div class="row py-2 m-0 border-bottom location_search_result_row">
+    get_result_list: function(results, search) {
+        var list = `
+<div class="row px-2 m-0 border-bottom location_search_result_row bg-white text-secondary"
+    style="position: sticky; top: 0px; z-index: 1;">
+    <div class="col-12 px-1 text-center">
+        <p><small>
+                Found ${results.length} results for "${search}"
+        </small></p>
+    </div>
+</div>
+        ` + results.map((result, index) => `
+<div class="row p-2 m-0 border-bottom location_search_result_row bg-grey">
     <div class="col-2 px-1">
         <img src="${result.icon}"
-            class="btn btn-outline-primary google_icon_img"/>
+            class="btn btn-outline-primary bg-light google_icon_img"/>
     </div>
-    <div class="col-6 p-1 location_search_result_text">
-        <nobr><p>${result.name}</p></nobr>
-        <nobr><small><p>${result.vicinity}</p></small></nobr>
+    <div class="col-7 p-1 location_search_result_text">
+        <p>${index}: ${result.name}</p>
+        <p><small>${result.vicinity}</small></p>
+        <p><small>${result.place_id}</small></p>
     </div>
-    <div class="col-4 p-0 pt-2">
-        <button class="btn btn-primary btn-sm m-auto" style="display: block;">
-            SELECT
+    <div class="col-3 p-0 pt-2 pr-2">
+        <button class="btn btn-primary btn-sm float-right"
+            style="display: block; white-space: nowrap; padding: 5px;"
+            place_id="${result.place_id}"
+            formatted_address="${result.vicinity}"
+            onclick="app.rider.main_screen.set_destination(this)">
+            <i class="fas fa-map-marker-alt" style="width: 11px;"></i>
+            Select 
         </button>
     </div>
-</div>`).join("");
+</div>`).join("") + `
+<div class="row p-2 m-0 border-bottom location_search_result_row bg-grey">
+    <div class="col-12 px-1 text-center">
+        <button class="btn btn-outline-danger btn-sm m-0">
+            No more results.        
+        </button>
+    </div>
+</div>`;
         return list;
     },
     show_location_markers: function(map, results, my_loc) {
@@ -132,4 +170,5 @@ utils = {
             new google.maps.LatLng(max_lat, max_lng),
         ));
     },
+    map_styles: [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"off"},{"lightness":"37"},{"saturation":"-60"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"visibility":"simplified"},{"color":"#ffffff"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"simplified"},{"saturation":"-100"},{"lightness":"23"},{"gamma":"0.50"},{"weight":"1.19"},{"color":"#ffc200"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"visibility":"on"},{"saturation":"46"},{"color":"#000000"},{"lightness":"70"},{"gamma":"7.91"}]},{"featureType":"poi","elementType":"geometry.stroke","stylers":[{"saturation":"-63"},{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"labels.text","stylers":[{"color":"#df0909"},{"saturation":"60"},{"gamma":"4.20"},{"lightness":"56"},{"visibility":"off"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#ffc200"},{"lightness":"24"},{"gamma":"0.84"}]},{"featureType":"poi","elementType":"labels.text.stroke","stylers":[{"saturation":"58"},{"color":"#ffc200"},{"lightness":"95"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"on"},{"saturation":"-100"},{"lightness":"39"},{"gamma":"1.26"},{"hue":"#ffc200"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"visibility":"simplified"},{"color":"#ffc200"},{"lightness":"55"},{"gamma":"0.92"},{"saturation":"-100"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"visibility":"simplified"},{"color":"#dddddd"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"visibility":"simplified"},{"color":"#eeeeee"}]},{"featureType":"transit","elementType":"labels.icon","stylers":[{"saturation":"-100"},{"hue":"#0800ff"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"simplified"},{"color":"#74c5ff"},{"saturation":"-8"},{"lightness":"14"},{"gamma":"7.06"}]}],
 }
