@@ -1,11 +1,15 @@
 {% extends "index.html" %}
 
 {% block mobile_content %}
-<div id="page_main_screen">
+<div id="page_main_screen" class="show_initial">
     <button id="toggle_sidebar" class="btn-dark btn-round m-3">
         <i class="material-icons">menu</i>
     </button>
-    <div id="main_form_on_expanded" class="bg-grey collapsed border-bottom">
+    <button id="center_map" class="btn-dark btn-round m-3"
+        onclick="app.rider.main_screen.center_self()">
+        <i class="material-icons">my_location</i>
+    </button>
+    <div id="main_form_top" class="bg-grey collapsed">
         <div class="p-2">
             <button id="main_form_back"
                 class="btn btn-danger btn-sm mb-2"
@@ -22,56 +26,39 @@
                 </div>
                 <input id="rider_origin_input" type="text"
                     placeholder="Loading your location..." class="form-control form-control-sm"
-                    onkeydown="app.rider.main_screen.search_destination(this)"
-                    onfocus="app.rider.main_screen.onfocus(this)"
+                    onkeydown="app.rider.main_screen.destination.keydown(this)"
+                    onfocus="app.rider.main_screen.destination.onfocus(this)"
+                    onfocusout="app.rider.main_screen.destination.onfocusout(this)"
                     style="border-radius: 0px 100px 100px 0px;"
                     ></input>
             </div>
             <div class="input-group input-group-sm mb-0 bg-white">
                 <div class="input-group-prepend">
-                    <button class="btn btn-dark" style="box-shadow: none;"
-                        onclick="app.rider.main_screen.search_destination('rider_distination_input', true)">
+                    <button id="rider_distination_input_button" class="btn btn-dark" style="box-shadow: none;"
+                        onclick="app.rider.main_screen.destination.keyup('rider_distination_input', true)">
                         <i class="fas fa-map-marker-alt"></i>
                         End
                     </button>
                 </div>
+                <div id="search_suggestions" class="dropdown-menu dropdown-menu-left p-0 w-100"></div>
                 <input id="rider_distination_input" type="text" placeholder="Search Destination" class="form-control form-control-sm border-right"
-                    onkeydown="app.rider.main_screen.search_destination('rider_distination_input')"
-                    onfocus="app.rider.main_screen.onfocus(this)"
+                    onkeyup="app.rider.main_screen.destination.keyup(this)"
+                    onfocus="app.rider.main_screen.destination.onfocus(this)"
+                    onfocusout="app.rider.main_screen.destination.onfocusout(this)"
                     ></input>
-                <div id="pickup_time_picker_button" class="input-group-append"
-                    onclick="$('#pickup_time_picker_modal_button').click()">
-                    <button class="btn btn-primary w-100 text-light"
-                        style="border-radius: 0px 15px 15px 0px;">
-                        <i class="fas fa-clock"></i>
+                <div id="pickup_time_picker_button" class="input-group-append" onclick="$('#pickup_time_picker_modal_button').click()">
+                    <button class="btn btn-primary w-100 text-light">
+                        <i class="fas fa-clock mr-2"></i>
                         Now
-                        <i class="fas fa-caret-down float-right ml-2"></i>
+                        <i class="fas fa-caret-down float-right m-0 ml-1"></i>
                     </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="destination_search_results_header" class="hidden empty">
-        <div class="header bg-white border-bottom w-100 text-secondary text-center small"
-             style="position: sticky; top: 0px; z-index: 1;">
-            <div class="row">
-                <div class="col-6">
-                    <p class="text-center" onclick="app.rider.main_screen.toggle_search_results_collapse()">
-                        <i class="far fa-caret-square-up"></i>
-                        Results
-                    </p>
-                </div>
-                <div class="col-6">
-                    <p class="text-center" onclick="$('#main_form_back').click()">
-                        <i class="fas fa-expand"></i>
-                        Map 
-                    </p>
                 </div>
             </div>
         </div>
     </div>
     <div id="geoloc_msg_alert" class="alert alert-secondary m-0 py-1 alert-dismissible fade show bg-white text-secondary border-top-0 border-left-0 border-right-0" role="alert">
         <div id="geoloc_msg" class="text-right border-0 text-secondary">
+            Fetching your geolocation...
         </div>
         <button type="button" class="close p-0 pr-3 text-primary" data-dismiss="alert">
             <span>&times;</span>
@@ -96,8 +83,8 @@
                     </button>
                 </div>
                 <input id="rider_origin_input_bottom" type="text" placeholder="Loading your location..." class="form-control form-control-sm"
-                    onkeydown="app.rider.main_screen.search_destination(this)"
-                    onfocus="app.rider.main_screen.onfocus(this)"
+                    onkeydown="app.rider.main_screen.destination.keydown(this)"
+                    onfocus="app.rider.main_screen.destination.onfocus(this)"
                     style="border-radius: 0px 100px 100px 0px;"
                     ></input>
             </div>
@@ -112,23 +99,46 @@
                 <input id="rider_distination_input_bottom"
                     type="text" placeholder="Where to?" class="form-control border-right"
                     style="border-right: none;"
-                    onkeydown="app.rider.main_screen.search_destination(this)"
-                    onfocus="app.rider.main_screen.onfocus(this)"
+                    onkeydown="app.rider.main_screen.destination.keydown(this)"
+                    onfocus="app.rider.main_screen.destination.onfocus(this)"
                     ></input>
-                <div id="pickup_time_picker_button" class="input-group-append"
-                    onclick="$('#pickup_time_picker_modal_button').click()">
-                    <button class="btn btn-primary w-100 text-light"
-                        style="border-radius: 0px 15px 15px 0px;">
-                        <i class="fas fa-clock"></i>
+                <div id="pickup_time_picker_button" class="input-group-append" onclick="$('#pickup_time_picker_modal_button').click()">
+                    <button class="btn btn-primary w-100 text-light">
+                        <i class="fas fa-clock mr-2"></i>
                         Now
-                        <i class="fas fa-caret-down float-right ml-2"></i>
+                        <i class="fas fa-caret-down float-right m-0 ml-1"></i>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <div id="destination_search_results_wrapper" class="hidden empty">
-        <div id="destination_search_results"></div>
+    <div id="destination_search_results_wrapper" class="hidden empty bg-grey" style="display: flex; flex-direction: column; z-index: 1;">
+        <div id="destination_search_results" style="flex: auto;">
+        </div>
+        <div id="destination_search_results_header" class="stick_bottom p-2 bg-white shadow_up">
+            <div class="btn-group btn-group-sm shadow_down">
+                <button class="btn btn-outline-dark btn-sm" onclick="app.rider.main_screen.toggle_search_results_collapse()">
+                    <i class="far fa-caret-square-up"></i>
+                    Results
+                </button>
+                <button class="btn btn-outline-dark btn-sm btn-sm" onclick="$('#main_form_back').click()">
+                    <i class="fas fa-expand p-0" style="width: 13px; margin-right: 3px;"></i>
+                    Map
+                </button>
+            </div>
+            <div class="btn-group btn-group-sm shadow_down float-right">
+                <button class="btn btn-outline-dark btn-sm px-2"
+                    onclick="app.rider.main_screen.inspect_prev_location()">
+                    <i class="fas fa-caret-left" style="width: 5px;"></i>
+                    Prev
+                </button>
+                <button class="btn btn-outline-dark btn-sm px-2"
+                    onclick="app.rider.main_screen.inspect_next_location()">
+                    Next
+                    <i class="fas fa-caret-right" style="width: 5px;"></i>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
